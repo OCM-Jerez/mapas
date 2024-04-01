@@ -5,9 +5,34 @@
 // @use '/src/styles/mixins';
 // @use '/src/styles/typography';
 // @use '/src/styles/utilities';
+
+
 @use 'variables' as vars;
+@import "leaflet/dist/leaflet.css";
 
 @media screen and (max-width: 4200px) {
+	.tooltipGreen {
+		// width: 20px;
+		// height: 26px;
+		background-color: #52e44d;
+		border: 1px solid #ccc;
+		border-radius: 50px;
+		padding-left: 8px;
+		padding-right: 8px;
+		font-size: 18px;
+		color: #333;
+	  }
+	  
+	  .tooltipRed {
+		background-color: #c02a2a;
+		border: 1px solid #ccc;
+		border-radius: 50px;
+		padding: 5px;
+		font-size: 18px;
+		color: #333;
+	  }
+	  
+
 	.OCM-gridMenu {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr 1fr;
