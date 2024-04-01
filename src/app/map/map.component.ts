@@ -1,228 +1,264 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Icon, geoJSON, map, marker, tileLayer } from 'leaflet';
-
+import { AfterViewInit, Component } from '@angular/core';
 import { GeoJsonObject } from 'geojson';
+import { Map, geoJSON, polygon, polyline, tileLayer } from 'leaflet';
+
+import { ds02004 } from '../../assets/data/02-004';
+import { ds02011 } from '../../assets/data/02-011';
+import { ds02013 } from '../../assets/data/02-013';
+import { ds02014 } from '../../assets/data/02-014';
+import { ds02021 } from '../../assets/data/02-021';
+import { ds02026 } from '../../assets/data/02-026';
+import { distritoCentro } from '../../assets/data/distritoCentro';
+import { limitesAlbarizuela } from '../../assets/data/limitesAlbarizuela';
+
 import secionesCensales from '../../assets/data/secionesCensalesUpdateCenso2004-2022UpdateTotal.json';
 
 @Component({
-  selector: 'app-map',
-  standalone: true,
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss'],
+	selector: 'app-map',
+	standalone: true,
+
+	templateUrl: './map.component.html',
+	styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements AfterViewInit, OnInit {
-  geoJson: GeoJsonObject | undefined;
-  // Configuración del mapa base.
-  tileLayerConfig = {
-    maxZoom: 17,
-    minZoom: 10,
-    attribution:
-      'Map data &copy; <a href="http://openstreetmap.org"> OpenStreetMap</a> Contributors, ' +
-      '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-      'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    id: 'mapbox.light',
-  };
+export class MapComponent implements AfterViewInit {
+	constructor() {}
 
-  onEachFeature = (feature:any, layer:any) => {
-    layer.on({
-      mouseover: this.highlightFeature,
-      // mouseout: this.resetHighlight,
-      // click: this.zoomToFeature
-    });
-  };
+	ngAfterViewInit(): void {
+		// http://leaflet-extras.github.io/leaflet-providers/preview/
+		const mapProblemas = new Map('map');
 
-  highlightFeature = (e:any) => {
-    const layer = e.target;
-    layer.setStyle({
-      weight: 5,
-      color: '#666',
-      dashArray: '',
-      fillOpacity: 0.5,
-    });
-  };
+		const distritoCentroArray: [number, number][] = [];
+		distritoCentro.forEach((element:any) => {
+			distritoCentroArray.push([element.lat, element.lng]);
+		});
+		polyline(distritoCentroArray, {
+			color: 'red',
+			weight: 9
+		}).addTo(mapProblemas);
 
-  constructor() {}
+		const limitesAlbarizuelaArray: [number, number][] = [];
+		limitesAlbarizuela.forEach((element) => {
+			limitesAlbarizuelaArray.push([element.lat, element.lng]);
+		});
+		polyline(limitesAlbarizuelaArray, {
+			color: 'green',
+			weight: 9
+		}).addTo(mapProblemas);
 
-  ngOnInit(): void {}
+		// const ds_02_021: [number, number][] = [
+		//   [
+		//     36.688551,
+		//     -6.133619,
+		//   ],
+		//   [
+		//     36.688133,
+		//     -6.134499,
+		//   ],
+		//   [
+		//     36.68783,
+		//     -6.135444,
 
-  ngAfterViewInit(): void {
-    // http://leaflet-extras.github.io/leaflet-providers/preview/
-    // const mamOCM = new Map('map');
-    const mamOCM = map('map', {
-      center: [36.684881, -6.132903],
-      zoomControl: false,
-      zoom: 16,
-      maxZoom: 17,
-      minZoom: 11,
-      // maxBounds: [
-      //   // Esquina superior izquierda hasta donde permitira mover.
-      //   [36.034027, -6.332731],
-      //   // Esquina inferior derecha.
-      //   [36.984881, -5.40752],
-      // ],
-    });
+		//   ],
+		// ]
+		// polyline(ds_02_021, { color: 'green' }).addTo(mapProblemas);
 
-    tileLayer(
-      'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-      this.tileLayerConfig
-    ).addTo(mamOCM);
+		const ds02021Array: [number, number][] = [];
+		ds02021.forEach((element) => {
+			ds02021Array.push([element.lat, element.long]);
+		});
+		polygon(ds02021Array, {
+			color: 'green',
+			fillColor: 'green',
+			fillOpacity: 0.1
+		}).addTo(mapProblemas);
 
-    // mamOCM.setView([36.68519, -6.13229], 15);
+		const ds02004Array: [number, number][] = [];
+		ds02004.forEach((element) => {
+			ds02004Array.push([element.lat, element.lng]);
+		});
+		polygon(ds02004Array, {
+			color: 'blue',
+			fillColor: 'blue',
+			fillOpacity: 0.2
+		}).addTo(mapProblemas);
 
-    const geoJson = geoJSON(secionesCensales as GeoJsonObject, {
-      // style: this.style2(),
-      // onEachFeature: this.onEachFeature,
-    }).addTo(mamOCM);
+		const ds02014Array: [number, number][] = [];
+		ds02014.forEach((element) => {
+			ds02014Array.push([element.lat, element.lng]);
+		});
+		polygon(ds02014Array, {
+			color: 'yellow',
+			fillColor: 'yellow',
+			fillOpacity: 0.2
+		}).addTo(mapProblemas);
 
-    // console.log('secionesCensales', secionesCensales.features[0].properties.ID);
-    // console.log(
-    //   'secionesCensales',
-    //   secionesCensales.features[0].geometry.coordinates[0][0]
-    // );
-    // console.log(
-    //   'secionesCensales',
-    //   secionesCensales.features[0].geometry.coordinates[0][0][0],
-    //   typeof secionesCensales.features[0].geometry.coordinates[0][0][0]
-    // );
-    // console.log(
-    //   'secionesCensales',
-    //   secionesCensales.features[0].geometry.coordinates[0][0][1]
-    // );
+		const ds02026Array: [number, number][] = [];
+		ds02026.forEach((element) => {
+			ds02026Array.push([element.lat, element.lng]);
+		});
+		polygon(ds02026Array, {
+			color: 'black',
+			fillColor: 'black',
+			fillOpacity: 0.2
+		}).addTo(mapProblemas);
 
-    // this.geoJson.features.forEach((feature) => {
-    //   const coordinates = feature.geometry.coordinates[0][0];
-    //   const marker = L.marker([coordinates[1], coordinates[0]]).addTo(this.map);
-    //   marker.bindPopup(`<b>ID:</b> ${feature.properties.ID}`);
-    // });
+		const ds02011Array: [number, number][] = [];
+		ds02011.forEach((element) => {
+			ds02011Array.push([element.lat, element.lng]);
+		});
+		polygon(ds02011Array, {
+			color: 'red',
+			fillColor: 'red',
+			fillOpacity: 0.1
+		}).addTo(mapProblemas);
 
-    const iconGreen = new Icon({
-      iconUrl:
-        'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
-      shadowUrl:
-        'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      shadowSize: [41, 41],
-      // shadowAnchor: [22, 94]
-    });
+		const ds02013Array: [number, number][] = [];
+		ds02013.forEach((element) => {
+			ds02013Array.push([element.lat, element.lng]);
+		});
+		polygon(ds02013Array, {
+			color: 'red',
+			fillColor: 'red',
+			fillOpacity: 0.2
+		}).addTo(mapProblemas);
 
-    const iconRed = new Icon({
-      iconUrl:
-        'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
-      shadowUrl:
-        'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      shadowSize: [41, 41],
-      // shadowAnchor: [22, 94]
-    });
+		// const ds01004Array: [number, number][] = [];
+		// ds01004.forEach((element) => {
+		// 	ds01004Array.push([element.lat, element.lng]);
+		// });
+		// polygon(ds01004Array, {
+		// 	color: 'blue',
+		// 	fillColor: 'blue',
+		// 	fillOpacity: 0.2
+		// }).addTo(mapProblemas);
 
-    // const intramuros = secionesCensales.features.map((feature) => {
+		// // San Miguel
+		// const ds02017Array: [number, number][] = [];
+		// ds02017.forEach((element) => {
+		// 	ds02017Array.push([element.lat, element.lng]);
+		// });
+		// polygon(ds02017Array, {
+		// 	color: 'red',
+		// 	fillColor: 'red',
+		// 	fillOpacity: 0.1
+		// }).addTo(mapProblemas);
 
-    const idsToRetrieve = [
-      '01-001',
-      '01-002',
-      '01-003',
-      '01-004',
-      '01-005',
-      '02-003',
-      '02-004',
-      '02-005',
-      '02-006',
-      '02-007',
-      '02-008',
-      '02-009',
-      '02-010',
-      '02-011',
-      '02-012',
-      '02-013',
-      '02-014',
-      '02-017',
-      '02-021',
-      '02-022',
-      '02-024',
-      '02-026',
-      '03-010',
-      '03-015',
-      '03-018',
-    ];
+		// const geoJson = geoJSON(secionesCensales as GeoJsonObject, {}).addTo(mapProblemas);
 
-    // Utiliza el método `filter` para iterar sobre secionesCensales.features y extraer aquellos elementos cuyo properties.ID esté incluido en el array idsToRetrieve
-    const filteredFeatures = secionesCensales.features.filter((feature) => {
-      return idsToRetrieve.includes(feature.properties.ID);
-    });
+		const geoJson = geoJSON(secionesCensales as GeoJsonObject, {
+			style: function (feature) {
+				// Establece un estilo predeterminado para todas las características
+				let estiloPredeterminado = {
+					color: 'green', // Color del borde del polígono o característica
+					fillColor: 'green', // Color de relleno del polígono o característica
+					fillOpacity: 0.1 // Opacidad del relleno
+				};
 
-    // Utiliza el método `map` para crear los objetos con las propiedades deseadas
-    // const intramuros = filteredFeatures.map((feature) => {
-    const intramuros = secionesCensales.features.map((feature) => {
-      return {
-        icon: iconGreen,
-        title: feature.properties.ID,
-        tooltip: feature.properties.TOTAL,
-        lat: feature.properties.lat,
-        long: feature.properties.long,
-        colorTooltip: feature.properties.backgroundColor,
-      };
-    });
+				// Distrito Centro
+				// Aplica un estilo diferente a la característica que cumple con una condición específica
+				if (
+					feature!.properties.ID === '01-001' ||
+					feature!.properties.ID === '01-002' ||
+					feature!.properties.ID === '01-003' ||
+					feature!.properties.ID === '01-004' ||
+					feature!.properties.ID === '01-005' ||
+					feature!.properties.ID === '02-001' ||
+					feature!.properties.ID === '02-002' ||
+					feature!.properties.ID === '02-003' ||
+					feature!.properties.ID === '02-005' ||
+					feature!.properties.ID === '02-006' ||
+					feature!.properties.ID === '02-007' ||
+					feature!.properties.ID === '02-008' ||
+					feature!.properties.ID === '02-011' ||
+					feature!.properties.ID === '02-012' ||
+					feature!.properties.ID === '02-013' ||
+					feature!.properties.ID === '02-017' ||
+					feature!.properties.ID === '02-022' ||
+					feature!.properties.ID === '02-023' ||
+					feature!.properties.ID === '02-024' ||
+					feature!.properties.ID === '02-025' ||
+					feature!.properties.ID === '03-010' ||
+					feature!.properties.ID === '03-015' ||
+					feature!.properties.ID === '03-018'
+				) {
+					estiloPredeterminado.color = 'blue'; // Cambia el color del borde
+					estiloPredeterminado.fillColor = 'red'; // Cambia el color de relleno
+					// Puedes ajustar cualquier otra propiedad de estilo aquí
+				}
 
-    // console.log(intramuros); // Muestra los objetos extraídos
+				return estiloPredeterminado;
+			},
+			onEachFeature: function (feature, layer) {
+				// Aquí puedes vincular eventos o añadir información adicional a cada característica
+				if (feature.properties && feature.properties.ID) {
+					layer.bindPopup('ID: ' + feature.properties.ID);
+				}
+			}
+		}).addTo(mapProblemas);
 
-    const varHabitantes = [
-      // {
-      //   icon: iconGreen,
-      //   title: `<h1>Sección censal 02-0004</h1>
-      //     <h3>Datos</h3>
-      //       <img src="https://res.cloudinary.com/dabrencx7/image/upload/v1647547099/albarizuela/fotosRutas/Caldereros_sxrbgn.jpg" alt="Don Juan" width="100px">
-      //    `,
-      //   lat: 36.686587,
-      //   long: -6.142346,
-      //   tooltip: '32',
-      //   colorTooltip: 'tooltipGreen',
-      // },
+		tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			maxZoom: 21,
+			attribution:
+				'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+		}).addTo(mapProblemas);
 
-      {
-        icon: iconGreen,
-        title: secionesCensales.features[0].properties.ID,
-        tooltip: secionesCensales.features[0].properties.TOTAL,
-        lat: secionesCensales.features[0].properties.lat,
-        long: secionesCensales.features[0].properties.long,
-        colorTooltip: secionesCensales.features[0].properties.backgroundColor,
-      },
-    ];
+		// https://www.youtube.com/watch?v=8fwWsFgXloY&list=PLaaTcPGicjqgLAUhR_grKBGCXbyKaP7qR&index=29
+		// https://github.com/pointhi/leaflet-color-markers
 
-    // console.log('varHabitantes', varHabitantes);
+		// const problemaIcon = new Icon({
+		// 	iconUrl:
+		// 		'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+		// 	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+		// 	iconSize: [25, 41],
+		// 	iconAnchor: [12, 41],
+		// 	popupAnchor: [1, -34],
+		// 	shadowSize: [41, 41]
+		// 	// shadowAnchor: [22, 94]
+		// });
 
-    intramuros.map((point) => {
-      // console.log('point', point);
+		// problemas.map((point) => {
+		// 	marker([point.lat, point.long], {
+		// 		icon: problemaIcon
+		// 	})
+		// 		.addTo(mapProblemas)
+		// 		.bindPopup(point.title);
+		// });
 
-      marker([point.lat, point.long], {
-        // marker(point.lat = point.coordinates, {
-        icon: point.icon,
-      })
-        .addTo(mamOCM)
-        .bindPopup(point.title)
-        .bindTooltip(point.tooltip, {
-          permanent: true,
-          className: point.colorTooltip,
-        });
-    });
+		// const ideaIcon = new Icon({
+		// 	iconUrl:
+		// 		'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+		// 	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+		// 	iconSize: [25, 41],
+		// 	iconAnchor: [12, 41],
+		// 	popupAnchor: [1, -34],
+		// 	shadowSize: [41, 41]
+		// 	// shadowAnchor: [22, 94]
+		// });
 
-    var overlays = {};
+		// ideas.map((point) => {
+		// 	marker([point.lat, point.long], {
+		// 		icon: ideaIcon
+		// 	})
+		// 		.addTo(mapProblemas)
+		// 		.bindPopup(point.title);
+		// });
 
-    // const text = 'Hello, World!';
-    // const icon = divIcon({
-    //   className: 'custom-text-marker',
-    //   html: `<div>${text}</div>`,
-    // });
+		mapProblemas.setView([36.68519, -6.13229], 18);
 
-    // const coordinates = [-6.13279, 36.68528];
-    // // const coordinates = [36.68528, , -6.13279];
-    // marker([coordinates], {
-    //   icon: ideaIcon,
-    // })
-    //   .addTo(mamOCM)
-    //   .bindPopup(point.title);
-  }
+		// Control de capas
+		// https://www.youtube.com/watch?v=psTsxc1045k&list=PLaaTcPGicjqgLAUhR_grKBGCXbyKaP7qR&index=58
+
+		// const comedia = marker([36.68593, -6.13121]).addTo(map);
+		var baseLayers = {
+			//  "Default": bizcocheros,
+			// "OpenStreetMap": osm
+		};
+
+		var overlays = {
+			// "Marker": comedia,
+			// "Roads": roadsLayer
+		};
+
+		// control.layers(baseLayers, overlays).addTo(map);
+	}
 }
