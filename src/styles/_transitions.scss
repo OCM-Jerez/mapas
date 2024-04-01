@@ -1,0 +1,32 @@
+// @media screen and (max-width: 4200px) {
+::view-transition-old(root) {
+	animation: exit 1s ease 0s 1 normal forwards;
+}
+
+::view-transition-new(root) {
+	animation: enter 1s ease 0s 1 normal forwards;
+}
+
+// https://webcode.tools/css-generator/keyframe-animation
+@keyframes enter {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes exit {
+	from {
+		opacity: 1;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(0);
+	}
+}
+// }

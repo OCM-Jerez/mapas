@@ -1,0 +1,254 @@
+@media screen and (max-width: 6000px) {
+	.OCM-containerTable {
+		display: flex;
+		flex-direction: column;
+		border-radius: 10px;
+		background: #f5f5f5;
+		margin: 10px;
+		&__title {
+			color: rgba(1, 0, 3, 0.913);
+			font-family: var(--fuente-principal);
+			font-size: 1.4rem;
+			margin: 10px;
+		}
+	}
+
+	.OCM-containerEstadoLicitacion {
+		display: flex;
+		flex-direction: column;
+		border-radius: 10px;
+		background: #f5f5f5;
+		margin: 10px;
+		height: 250px;
+		&:nth-child(1) {
+			justify-content: center;
+			width: 20%;
+		}
+		&:nth-child(2) {
+			justify-content: flex-start;
+			width: 54%;
+		}
+		&:nth-child(3) {
+			justify-content: center;
+			width: 20%;
+		}
+		&--figure {
+			@media screen and (max-width: 576px) {
+				display: none;
+			}
+		}
+	}
+
+	.OCM-table {
+		width: 97%;
+		height: 100%;
+		text-align: center;
+		border-collapse: collapse;
+		margin: 20px;
+		thead {
+			background: #003df6;
+			height: 20px;
+			th {
+				font-size: clamp(0.8rem, 1vw + 1rem, 1.8rem);
+				font-weight: bold;
+				color: #ffffff;
+				width: 50px;
+				border-left: 2px solid #ffffff;
+			}
+		}
+		tbody {
+			text-align: left;
+			td {
+				font-size: clamp(0.583rem, 1vw + 0.5rem, 1.333rem);
+			}
+			tr:nth-child(even) {
+				background: #84c4c8;
+			}
+		}
+		td {
+			&:nth-child(1) {
+				width: 15%;
+				text-align: center;
+			}
+			&:nth-child(2) {
+				width: 15%;
+				text-align: left;
+			}
+			&:nth-child(3) {
+				width: 64%;
+				text-align: left;
+			}
+			&:nth-child(4) {
+				width: 6%;
+				text-align: center;
+			}
+		}
+	}
+
+	.OCM-tableData {
+		width: 99%;
+		margin: 10px;
+		tbody {
+			td {
+				font-size: clamp(0.8rem, 1vw + 1rem, 1.4rem);
+				padding: 6px;
+				&:nth-child(1) {
+					width: 10%;
+				}
+				&:nth-child(2) {
+					width: 84%;
+				}
+				&:nth-child(3) {
+					width: 6%;
+					text-align: center;
+				}
+			}
+		}
+		tr:nth-child(even) {
+			background: #dcf3bc;
+		}
+		tr:nth-child(odd) {
+			background: #e3ede0;
+		}
+	}
+
+	.OCM-tableEstadoLicitacion {
+		margin: 10px;
+		thead {
+			background: #003df6;
+			height: 20px;
+			th {
+				font-size: 1.5rem;
+				font-weight: bold;
+				color: #ffffff;
+				width: 50px;
+				border-left: 2px solid #ffffff;
+			}
+		}
+		tr {
+			height: 20px;
+		}
+		td {
+			font-size: 1.2rem;
+			&:nth-child(1) {
+				width: 25%;
+				text-align: right;
+			}
+			&:nth-child(2) {
+				text-align: left;
+				padding-left: 10px;
+			}
+		}
+	}
+
+	.OCM-tableSeguimientoSubvenciones {
+		width: 97%;
+		height: 100%;
+		text-align: center;
+		border-collapse: collapse;
+		margin-left: 20px;
+		thead {
+			background: #003df6;
+			height: 20px;
+			th {
+				font-size: 1.5rem;
+				font-weight: bold;
+				color: #ffffff;
+				width: 50px;
+				border-left: 2px solid #ffffff;
+			}
+		}
+		tbody {
+			text-align: left;
+			td {
+				font-size: 1.2rem;
+			}
+			tr:nth-child(even) {
+				background: #84c4c8;
+			}
+		}
+		td {
+			&:nth-child(1) {
+				width: 42%;
+				text-align: left;
+			}
+			&:nth-child(2) {
+				width: 53%;
+				text-align: left;
+			}
+			&:nth-child(3) {
+				width: 6%;
+				text-align: right;
+			}
+		}
+	}
+
+	.OCM-tableComentarios {
+		width: 97%;
+		height: 100%;
+		text-align: center;
+		border-collapse: collapse;
+		margin-left: 20px;
+		thead {
+			background: #003df6;
+			height: 20px;
+			th {
+				font-size: 1.5rem;
+				font-weight: bold;
+				color: #ffffff;
+				width: 50px;
+				border-left: 2px solid #ffffff;
+			}
+		}
+		tbody {
+			text-align: left;
+			td {
+				font-size: 1.2rem;
+			}
+			tr:nth-child(even) {
+				background: #84c4c8;
+			}
+		}
+		td {
+			&:nth-child(1) {
+				width: 14%;
+				text-align: center;
+			}
+			&:nth-child(2) {
+				width: 15%;
+				text-align: left;
+			}
+			&:nth-child(3) {
+				width: 65%;
+				text-align: left;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.OCM-containerTable {
+		&__title {
+			font-size: 10px;
+			margin: 2px;
+		}
+	}
+
+	.OCM-containerEstadoLicitacion {
+		&:nth-child(2) {
+			width: 100%;
+		}
+	}
+
+	.OCM-table {
+		margin: 4px;
+		td {
+			&:nth-child(2) {
+				width: 20%;
+			}
+			&:nth-child(3) {
+				width: 59%;
+			}
+		}
+	}
+}

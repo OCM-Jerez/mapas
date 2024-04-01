@@ -1,0 +1,270 @@
+// https://www.udemy.com/course/advanced-css-and-scss/learn/lecture/8274478#overview
+// @use '/src/styles/animations';
+// @use '/src/styles/base';
+// @use '/src/styles/functions';
+// @use '/src/styles/mixins';
+// @use '/src/styles/typography';
+// @use '/src/styles/utilities';
+@use 'variables' as vars;
+
+@media screen and (max-width: 4200px) {
+	.OCM-gridMenu {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+		height: auto;
+		gap: 20px 20px;
+		padding: 20px;
+		background-color: #15202b;
+	}
+
+	.highlight {
+		// Estilos para resaltar la tarjeta
+		border: 8px solid #f20616;
+		background-color: #fce3e3;
+	}
+
+	.InputContainer {
+		display: flex;
+		align-items: center;
+	}
+
+	input {
+		background-color: #4d4e50;
+		padding: 16px 32px;
+		background-color: #4d4e50;
+		padding: 16px 32px;
+		border: 1px solid rgb(147, 138, 138);
+		border-radius: 10px;
+		display: block;
+		color: #f2f3f4;
+		width: 90%;
+		height: 50%;
+		margin-left: 10px;
+		&::placeholder {
+			color: #e0e8f0;
+		}
+	}
+
+	.OCM-dark-teme {
+		background-color: #15202b;
+		min-height: 650px;
+		margin-bottom: 10px;
+		padding: 1px;
+		caret-color: transparent;
+	}
+
+	.OCM-grid {
+		display: grid;
+		grid-auto-columns: 1fr;
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+		padding: 20px;
+		background-color: #15202b;
+		margin-bottom: 20px;
+		margin-right: 20px;
+		gap: 20px;
+	}
+
+	.OCM-container {
+		margin: 0 auto;
+		display: block;
+		max-width: 98%;
+		> *:not(.tab-wrap) {
+			padding: 0 80px;
+		}
+	}
+
+	.OCM-disabled {
+		pointer-events: none;
+		opacity: 0.2;
+	}
+
+	.OCM-selected {
+		background-color: blue;
+		color: white;
+		border: solid 1px #ccc;
+		box-shadow: 2px 2px 2px #ccc;
+		font-weight: bold;
+	}
+
+	.OCM-title {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100 hw;
+		color: black;
+		font-weight: 700;
+		font-family: var(--fuente-principal);
+		font-size: 4rem;
+		text-align: center;
+		margin-top: 30px;
+		margin-bottom: 0px;
+	}
+
+	.OCM-title-dark {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100 hw;
+		color: rgb(250, 248, 248);
+		background-color: #15202b;
+		font-weight: 700;
+		font-family: var(--fuente-principal);
+		font-size: clamp(0.7rem, 3vw + 1rem, 3rem);
+		text-align: center;
+		padding: 20px;
+	}
+
+	.OCM-subtitle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100 hw;
+		color: black;
+		font-weight: 600;
+		font-family: var(--fuente-principal);
+		font-size: 1.5rem;
+		text-align: center;
+		margin-top: 10px;
+	}
+
+	.OCM-subtitle-dark {
+		display: flex;
+		justify-content: center;
+		width: 100 hw;
+		color: rgb(248, 248, 248);
+		background-color: #15202b;
+		font-family: var(--fuente-principal);
+		font-size: clamp(0.778rem, 1vw + 1rem, 2.222rem);
+		padding: 20px;
+		&--left {
+			justify-content: left;
+		}
+		&--center {
+			justify-content: center;
+		}
+	}
+
+	.OCM-label-dark {
+		display: flex;
+		justify-content: left;
+		width: 100 hw;
+		color: rgb(248, 248, 248);
+		background-color: #15202b;
+		font-family: var(--fuente-principal);
+		font-size: clamp(0.778rem, 1vw + 0.5rem, 1.222rem);
+		padding-left: 10px;
+		&--marginTop {
+			margin-top: 1rem;
+		}
+	}
+
+	.OCM-alert {
+		background-color: #d31f1f;
+		color: #f4ecec;
+		margin-top: 0.3rem;
+		margin-bottom: 1rem;
+		padding: 0px 15px 0px 15px;
+		border: 1px solid #1b0408;
+		border-radius: 4px;
+		max-width: 200px;
+	}
+
+	.OCM-text {
+		&--cabecera {
+			margin-top: 2rem;
+			margin-bottom: 0.5rem;
+			font-weight: 900;
+			margin-top: 1rem;
+			color: rgb(14, 1, 1);
+			font-family: var(--fuente-principal);
+			font-size: clamp(1.5rem, 5vw, 2.5rem);
+			text-align: center;
+		}
+		&--subtitulo {
+			text-align: center;
+			font-size: clamp(1rem, -0.875rem + 8.333vw, 1.5rem);
+		}
+		&--años {
+			color: map-get(vars.$OCM-colors, claro);
+			margin-bottom: 0.2rem;
+		}
+		&--ingresos {
+			color: map-get(vars.$OCM-colors, claro);
+		}
+		&--gastos {
+			color: map-get(vars.$OCM-colors, claro);
+		}
+		&--comparativas {
+			color: map-get(vars.$OCM-colors, claro);
+		}
+	}
+
+	#home {
+		font-size: 16px;
+	}
+
+	#OCM-logo {
+		margin-top: 2px;
+		width: 40px;
+		height: 40px;
+	}
+
+	.OCM-textoLogo {
+		margin-left: 2px;
+		font-size: 12px;
+	}
+}
+
+@media screen and (max-width: 2000px) {
+}
+
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 992px) {
+	// MD Samsung Note apaisado
+}
+
+@media screen and (max-width: 750px) {
+}
+
+@media screen and (max-width: 576px) {
+	.OCM-gridMenu {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.OCM-home {
+		font-size: 16px;
+		color: white;
+		margin-right: 40px;
+	}
+
+	#home {
+		font-size: 8px;
+	}
+
+	#OCM-logo {
+		margin-top: 2px;
+		width: 20px;
+		height: 20px;
+	}
+
+	.OCM-textoLogo {
+		margin-left: 2px;
+		font-size: 6px;
+	}
+
+	.OCM-title-dark {
+		padding-top: 10px;
+	}
+
+	.OCM-subtitle-dark {
+		padding: 10px;
+	}
+
+	.OCM-title {
+		margin-top: 0px;
+		font-weight: 600 !important;
+		font-size: 16px;
+	}
+}

@@ -1,0 +1,38 @@
+html {
+	box-sizing: border-box; //https://www.udemy.com/course/css-grid-y-flexbox-la-guia-definitiva-crea-10-proyectos/learn/lecture/28229796#announcements
+	font-size: 62.5%; /* 62.5% of 16px base font size is 10px */
+	max-height: 950px;
+	// max-width: 3200px;
+	min-width: 360px;
+	// width: 100vw;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit; // https://www.udemy.com/course/css-grid-y-flexbox-la-guia-definitiva-crea-10-proyectos/learn/lecture/28229796#announcements
+}
+
+body {
+	// width: 100vw; // evita que se vea la barra de scroll
+	max-width: 1200px;
+	max-height: 950px;
+	min-width: 400px;
+	display: flex;
+	flex-direction: column;
+	line-height: 2rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+// @media screen and (max-width: 1199.98px) {
+//   body {
+//     height: 100vh;
+//     max-height: 950px; // evita que se vea la barra de scroll
+//     width: 98vw; // evita que se vea la barra de scroll
+
+//     display: flex;
+//     flex-direction: column;
+//     line-height: 2rem;
+//   }
+// }

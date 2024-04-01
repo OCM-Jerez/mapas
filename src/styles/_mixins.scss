@@ -1,0 +1,53 @@
+@use 'sass:math';
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+	$u1: unit($min-vw);
+	$u2: unit($max-vw);
+	$u3: unit($min-font-size);
+	$u4: unit($max-font-size);
+
+	@if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+		& {
+			font-size: $min-font-size;
+			@media screen and (min-width: $min-vw) {
+				font-size: calc(
+					#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+						(math.div((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}))
+				);
+			}
+			@media screen and (min-width: $max-vw) {
+				font-size: $max-font-size;
+			}
+		}
+	}
+}
+
+@mixin bottom {
+	position: absolute;
+	right: 0;
+	left: 0;
+}
+
+@mixin OCM-logo {
+	height: 30px;
+	width: 30px;
+	// margin-top: 5px;
+	margin-left: 10px;
+	margin-right: 5px;
+	background-size: contain;
+	vertical-align: middle;
+	border-radius: 191px 191px 191px 191px;
+	-moz-border-radius: 191px 191px 191px 191px;
+	-webkit-border-radius: 191px 191px 191px 191px;
+	&:hover {
+		transform: scale(1.2);
+	}
+}
+
+@mixin OCM-text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+}

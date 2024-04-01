@@ -1,0 +1,17 @@
+$OCM-colors: (
+	primario: #da595e,
+	obscuro: #515963,
+	claro: #ffffff,
+	navBarBackground: #1769aa,
+	navBarDarkBackground: #303133,
+	navBarText: hsl(355, 100%, 50%),
+	table-th: #515963
+);
+
+// Use in mixins fluid-type
+$min_width: 320px;
+// $max_width: 1200px;
+$min_font: 8px;
+$max_font: 24px;
+
+$imgPath: '../../../assets/img';
