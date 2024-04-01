@@ -1,6 +1,11 @@
 <div class="OCM-app-root">
 <app-navbar />
-<!-- <router-outlet /> -->
-<app-map></app-map>
+<section class="OCM-flex OCM-flex--center">
+    <button class="OCM-button-container OCM-button" type="button" (click)="distritos()">Distritos</button>
+    <button class="OCM-button-container OCM-button" type="button" (click)="avar()">Variación habitantes</button>
+   
+</section>
+
+<router-outlet />
 <app-footer />
 </div>

@@ -1,5 +1,4 @@
 import { Component,  inject } from '@angular/core';
-import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
 
@@ -12,20 +11,10 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
 	
-	private _location = inject(Location);
 		public router = inject(Router);
 
 
 	
-
-	navigateTo() {
-		this.router.navigateByUrl('/');
-	}
-
-	volver() {
-		
-		this._location.back();
-	}
 
 
 }

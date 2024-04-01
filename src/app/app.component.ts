@@ -1,17 +1,30 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
-import { MapComponent } from './map/map.component';
+import MapComponent from './map/map.component';
+import MapVarComponent from './variacion/var.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-	imports: [NavbarComponent, RouterOutlet, FooterComponent, MapComponent],
+	imports: [NavbarComponent, RouterOutlet, FooterComponent, MapComponent, MapVarComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'mapas';
+  public router = inject(Router);
+
+  avar() {
+		this.router.navigateByUrl('/var');
+	}
+
+	distritos() {
+			this.router.navigateByUrl('/distritos');
+	}
+
+  
+
+
+
 }

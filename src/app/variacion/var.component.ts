@@ -7,10 +7,10 @@ import secionesCensales from '../../assets/data/secionesCensalesUpdateCenso2004-
 @Component({
   selector: 'app-map-var',
   standalone: true,
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss'],
+  templateUrl: './var.component.html',
+  styleUrls: ['./var.component.scss'],
 })
-export class MapComponentVar implements AfterViewInit, OnInit {
+export default class VarComponent implements AfterViewInit, OnInit {
   geoJson: GeoJsonObject | undefined;
   // Configuración del mapa base.
   tileLayerConfig = {

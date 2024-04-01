@@ -20,7 +20,7 @@ import secionesCensales from '../../assets/data/secionesCensalesUpdateCenso2004-
 	templateUrl: './map.component.html',
 	styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements AfterViewInit {
+export default class MapComponent implements AfterViewInit {
 	constructor() {}
 
 	ngAfterViewInit(): void {
