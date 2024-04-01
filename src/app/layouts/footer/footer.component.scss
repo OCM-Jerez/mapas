@@ -1,0 +1,60 @@
+// @use 'variables' as vars;
+// @use 'mixins' as m;
+
+// // https://javascript.plainenglish.io/5-steps-to-adding-a-sticky-footer-to-your-angular-11-application-6c185c2ed99f
+// .footer {
+// 	a {
+// 		text-decoration: none;
+// 		color: white;
+// 	}
+
+// 	display: flex;
+// 	justify-content: space-between;
+// 	flex-flow: row wrap;
+// 	width: 100%;
+// 	height: 50px;
+// 	background-color: map-get(vars.$OCM-colors, navBarBackground);
+// 	&--text {
+// 		@include m.OCM-text;
+// 		font-size: 18px;
+// 		margin-left: 10px;
+// 	}
+// 	&--rrss {
+// 		display: flex;
+// 		flex-direction: row;
+// 		justify-content: flex-start;
+// 		align-items: center;
+
+// 		.logoWWW {
+// 			@include m.OCM-logo;
+// 			background: url('#{vars.$imgPath}/www.svg') no-repeat center center;
+// 		}
+
+// 		.logoFacebook {
+// 			@include m.OCM-logo;
+// 			background: url('#{vars.$imgPath}/facebook.svg') no-repeat center center;
+// 		}
+
+// 		.logoTwitter {
+// 			@include m.OCM-logo;
+// 			background: url('#{vars.$imgPath}/twitter.svg') no-repeat center center;
+// 		}
+// 	}
+
+// 	&--mail {
+// 		@include m.OCM-text;
+// 		text-decoration-style: none;
+// 		margin-right: 20px;
+// 		font-size: 18px;
+
+// 		a:hover {
+// 			transform: scale(1.2);
+// 		}
+// 	}
+// }
+
+// @media screen and (max-width: 844px) {
+// 	.footer {
+// 		display: none;
+// 	}
+// }

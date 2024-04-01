@@ -1,0 +1,19 @@
+<nav class="navbar">
+	<div class="navbar__logo"></div>
+	<div class="navbar__title">Datos Ayuntamiento Jerez</div>
+
+	@if (router.url === '/home') {
+		<div></div>
+	} @else {
+		<div class="navbar__home">
+			@if (canAddRowSupabase) {
+				<button class="OCM-button" (click)="addNew()">+ noticia</button>
+				<button class="OCM-button" (click)="addCom()">+ comentario</button>
+				<button class="OCM-button" (click)="addDoc()">+ documento</button>
+				<button class="OCM-button" (click)="addCard()">+ card</button>
+			}
+			<a class="navbar__logoVolver" (click)="volver()"></a>
+			<a class="navbar__logoHome" (click)="navigateTo()"></a>
+		</div>
+	}
+</nav>

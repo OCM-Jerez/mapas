@@ -1,0 +1,49 @@
+// @use 'variables' as vars;
+// @use 'mixins' as m;
+
+// @media screen and (max-width: 4200px) {
+// 	.navbar {
+// 		display: flex;
+// 		justify-content: space-between;
+// 		align-items: center;
+// 		background-color: map-get(vars.$OCM-colors, navBarBackground);
+// 		height: 50px;
+// 		caret-color: transparent;
+// 		&__logo {
+// 			background: url('#{vars.$imgPath}/logoOCM.png');
+// 			height: 40px;
+// 			width: 184px;
+// 			margin-left: 20px;
+// 			background-size: cover;
+// 		}
+// 		&__title {
+// 			@include m.OCM-text;
+// 			font-size: clamp(0.667rem, 2vw + 0.25rem, 2.583rem);
+// 		}
+// 		&__home {
+// 			display: flex;
+// 			flex-direction: row;
+// 			justify-content: flex-end;
+// 			cursor: pointer;
+// 		}
+// 		&__logoHome {
+// 			@include m.OCM-logo;
+// 			background: url('#{vars.$imgPath}/home.svg') no-repeat center center;
+// 			margin-right: 20px;
+// 		}
+// 		&__logoVolver {
+// 			@include m.OCM-logo;
+// 			background: url('#{vars.$imgPath}/back.svg') no-repeat center center;
+// 		}
+// 	}
+// }
+
+// @media screen and (max-width: 570px) {
+// 	.navbar {
+// 		&__logo {
+// 			height: 25px;
+// 			width: 90px;
+// 			margin-left: 6px;
+// 		}
+// 	}
+// }
