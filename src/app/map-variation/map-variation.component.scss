@@ -1,0 +1,169 @@
+.map-variation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.map-controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px;
+}
+
+.toggle-button, .perimetro-button, .perimetro-info-button, .distrito-toggle-button, .perimetro-intramuros-toggle-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  &.active {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+  }
+
+  &:disabled {
+    background: linear-gradient(135deg, #ccc 0%, #999 100%);
+    cursor: not-allowed;
+    transform: none;
+    
+    &:hover {
+      transform: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+.perimetro-info-button {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  
+  &:hover:not(:disabled) {
+    background: linear-gradient(135deg, #34ce57 0%, #2dd4aa 100%);
+  }
+}
+
+.distrito-toggle-button {
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  
+  &:hover:not(:disabled) {
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+  }
+  
+  &.active {
+    background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+  }
+}
+
+.perimetro-intramuros-toggle-button {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  
+  &:hover:not(:disabled) {
+    background: linear-gradient(135deg, #047857 0%, #059669 100%);
+  }
+  
+  &.active {
+    background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+  }
+}
+
+.info-panel {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 2px solid #ff0000;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px;
+  max-width: 600px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.perimetro-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #333;
+  
+  .perimetro-legend {
+    font-size: 18px;
+  }
+  
+  .perimetro-method {
+    color: #ff0000;
+    font-style: italic;
+    margin-left: auto;
+  }
+}
+
+// Estilos para el tooltip del perímetro
+:host ::ng-deep .perimetro-tooltip {
+  background-color: #ff0000 !important;
+  color: white !important;
+  border: 2px solid #cc0000 !important;
+  border-radius: 8px !important;
+  font-weight: bold !important;
+  font-size: 12px !important;
+  padding: 8px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  
+  &.leaflet-tooltip-left:before {
+    border-left-color: #ff0000 !important;
+  }
+  
+  &.leaflet-tooltip-right:before {
+    border-right-color: #ff0000 !important;
+  }
+  
+  &.leaflet-tooltip-top:before {
+    border-top-color: #ff0000 !important;
+  }
+  
+  &.leaflet-tooltip-bottom:before {
+    border-bottom-color: #ff0000 !important;
+  }
+}
+
+#map-variation {
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: aquamarine;
+  height: 87vh;
+  width: 98vh;
+}
+
+.tooltipPositive {
+  background-color: #28a745 !important;
+  color: white !important;
+  border: none !important;
+  font-weight: bold !important;
+}
+
+.tooltipNegative {
+  background-color: #dc3545 !important;
+  color: white !important;
+  border: none !important;
+  font-weight: bold !important;
+}
+
+.tooltipNeutral {
+  background-color: #ffc107 !important;
+  color: black !important;
+  border: none !important;
+  font-weight: bold !important;
+}

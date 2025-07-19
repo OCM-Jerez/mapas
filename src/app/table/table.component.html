@@ -1,0 +1,30 @@
+<div class="table-container">
+  <table class="population-table">
+    <thead>
+      <tr>
+        <th class="section-header">Sección Censal</th>
+        <th class="population-header">Población 2024</th>
+        <th class="population-header">Población 2011</th>
+        <th class="population-header">Diferencia 2024-2011</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let seccion of secciones" class="data-row">
+        <td class="section-name">{{ seccion.Nombre }}</td>
+        <td class="population-number">{{ formatNumber(seccion['Población 2024']) }}</td>
+        <td class="population-number">{{ formatNumber(seccion['Población 2011'] || 0) }}</td>
+        <td class="population-number" [ngClass]="{'positive': seccion['Diferencia 2024-2011']! > 0, 'negative': seccion['Diferencia 2024-2011']! < 0}">
+          {{ formatNumberWithSign(seccion['Diferencia 2024-2011'] || 0) }}
+        </td>
+      </tr>
+      <tr class="total-row">
+        <td class="section-name total-label">TOTAL POBLACIÓN FILTRADA</td>
+        <td class="population-number total-number">{{ formatNumber(totalPoblacion2024) }}</td>
+        <td class="population-number total-number">{{ formatNumber(totalPoblacion2011) }}</td>
+        <td class="population-number total-number" [ngClass]="{'positive': totalDiferencia > 0, 'negative': totalDiferencia < 0}">
+          {{ formatNumberWithSign(totalDiferencia) }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

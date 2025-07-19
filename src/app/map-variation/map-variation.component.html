@@ -1,0 +1,42 @@
+<div class="map-variation-container">
+  <div class="map-controls">
+    <button 
+      class="toggle-button" 
+      [class.active]="showMap"
+      (click)="toggleMap()">
+      {{ showMap ? 'Mostrar tabla' : 'Mostrar Mapa' }}
+    </button>
+    
+    <button 
+      class="perimetro-info-button" 
+      [disabled]="!showMap"
+      (click)="showPerimetroInformation()">
+      Información Perímetro
+    </button>
+    
+    <button 
+      class="distrito-toggle-button" 
+      [class.active]="showDistritoCentro"
+      [disabled]="!showMap"
+      (click)="toggleDistritoCentro()">
+      {{ showDistritoCentro ? 'Ocultar Distrito' : 'Mostrar Distrito' }}
+    </button>
+    
+    <button 
+      class="perimetro-intramuros-toggle-button" 
+      [class.active]="showPerimetroIntramuros"
+      [disabled]="!showMap"
+      (click)="togglePerimetroIntramuros()">
+      {{ showPerimetroIntramuros ? 'Ocultar Intramuros' : 'Mostrar Intramuros' }}
+    </button>
+  </div>
+
+  <div id="map-variation" *ngIf="showMap"></div>
+  
+  <!-- Componente modal para mostrar información del perímetro -->
+  <app-perimetro-info 
+    [isVisible]="showPerimetroInfo"
+    [perimetroData]="perimetroData"
+    (closeModal)="closePerimetroInfo()">
+  </app-perimetro-info>
+</div>

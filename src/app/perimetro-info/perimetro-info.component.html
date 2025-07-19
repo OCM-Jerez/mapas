@@ -1,0 +1,45 @@
+<div class="modal-overlay" *ngIf="isVisible" (click)="onOverlayClick($event)">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3 class="modal-title">🎯 Información del Perímetro</h3>
+      <button class="close-button" (click)="onClose()">✕</button>
+    </div>
+    
+    <div class="modal-body" *ngIf="perimetroData">
+      <div class="info-section">
+        <h4>{{ perimetroData.name }}</h4>
+        <p class="description">{{ perimetroData.description }}</p>
+      </div>
+      
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-label">Método:</span>
+          <span class="stat-value method">{{ perimetroData.method }}</span>
+        </div>
+        
+        <div class="stat-item">
+          <span class="stat-label">Secciones incluidas:</span>
+          <span class="stat-value">{{ perimetroData.sectionCount }}</span>
+        </div>
+        
+        <div class="stat-item">
+          <span class="stat-label">Puntos de precisión:</span>
+          <span class="stat-value">{{ perimetroData.pointsCount }}</span>
+        </div>
+      </div>
+      
+      <div class="sections-container">
+        <h4 class="sections-title">Secciones censales incluidas:</h4>
+        <div class="sections-grid">
+          <span class="section-tag" *ngFor="let section of perimetroData.sections">
+            {{ section }}
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal-footer">
+      <button class="btn-close" (click)="onClose()">Cerrar</button>
+    </div>
+  </div>
+</div>

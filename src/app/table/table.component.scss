@@ -1,0 +1,126 @@
+.table-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.population-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Arial', sans-serif;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.population-table thead {
+  background-color: #cd5c5c;
+  color: white;
+}
+
+.population-table th {
+  padding: 15px 20px;
+  text-align: left;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+.section-header {
+  width: 40%;
+}
+
+.population-header {
+  width: 20%;
+  text-align: right;
+}
+
+.population-table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.2s ease;
+}
+
+.data-row:hover {
+  background-color: #f5f5f5;
+}
+
+.population-table td {
+  padding: 12px 20px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.section-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.population-number {
+  text-align: right;
+  font-weight: 600;
+  color: #555;
+}
+
+.total-row {
+  background-color: #cd5c5c !important;
+  color: white;
+  font-weight: bold;
+}
+
+.total-row:hover {
+  background-color: #b34545 !important;
+}
+
+.total-label {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.total-number {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+// Styles for positive and negative differences
+.positive {
+  color: #28a745 !important;
+  font-weight: bold;
+}
+
+.negative {
+  color: #dc3545 !important;
+  font-weight: bold;
+}
+
+.total-row .positive {
+  color: #90ee90 !important;
+}
+
+.total-row .negative {
+  color: #ffcccb !important;
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .table-container {
+    margin: 10px;
+    padding: 10px;
+  }
+  
+  .population-table th,
+  .population-table td {
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+  
+  .section-header,
+  .population-header {
+    width: auto;
+  }
+}

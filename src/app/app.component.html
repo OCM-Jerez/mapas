@@ -1,11 +1,43 @@
 <div class="OCM-app-root">
-<app-navbar />
-<section class="OCM-flex OCM-flex--center">
-    <button class="OCM-button-container OCM-button" type="button" (click)="distritos()">Distritos</button>
-    <button class="OCM-button-container OCM-button" type="button" (click)="avar()">Variación habitantes</button>
-   
-</section>
+  <app-navbar></app-navbar>
+  <!-- <router-outlet></router-outlet> -->
+  
+  <!-- Botones de navegación entre mapas -->
+  <div class="map-navigation">
+    <button 
+      (click)="showPopulationMap()" 
+      [class.active]="showMap === 'population'"
+      class="map-button">
+     Variación poblacional 2004-2022
+      <br>Municipio
+    </button>
+    <button 
+      (click)="showVariationMap()" 
+      [class.active]="showMap === 'variation'"
+      class="map-button">
+      Variación poblacional 2011-2024<br>Centro Histórico
+    </button>
+    <button 
+      (click)="showBasicMap()" 
+      [class.active]="showMap === 'basic'"
+      class="map-button">
+      Secciones censales
+    </button>
+    <button 
+      (click)="showDistritosMap()" 
+      [class.active]="showMap === 'distritos'"
+      class="map-button">
+      Distritos
+    </button>
+  </div>
 
-<router-outlet />
-<app-footer />
+  <!-- Mostrar el mapa correspondiente -->
+  <app-map *ngIf="showMap === 'population'"></app-map>
+  <app-map-variation *ngIf="showMap === 'variation'"></app-map-variation>
+  <app-map-basic *ngIf="showMap === 'basic'"></app-map-basic>
+  <app-map-distritos *ngIf="showMap === 'distritos'"></app-map-distritos>
+  
+  <!-- La tabla solo se muestra cuando está activo el mapa de variación -->
+  <app-table *ngIf="showMap === 'variation'"></app-table>
+  <app-footer></app-footer>
 </div>
