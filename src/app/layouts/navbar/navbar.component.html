@@ -2,12 +2,11 @@
 	<div class="navbar__logo"></div>
 	<div class="navbar__title"> Informaciones por secciones censales</div>
 
-	@if (router.url === '/home') {
+	@if (isHomePage()) {
 		<div></div>
 	} @else {
 		<div class="navbar__home">
-		
-			
+			<!-- Navigation content -->
 		</div>
 	}
 </nav>
