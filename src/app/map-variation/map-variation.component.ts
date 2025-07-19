@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, computed, inject, signal } from '@angular/core';
-import { Icon, geoJSON, map, marker, tileLayer, polygon, Layer, LeafletEvent, Map as LeafletMap } from 'leaflet';
+import { geoJSON, map, marker, tileLayer, polygon, Layer, LeafletEvent, Map as LeafletMap, divIcon } from 'leaflet';
 import { GeoJsonObject, Feature, Geometry } from 'geojson';
 
 import { MapDataService } from '@services/map-data.service';
@@ -284,34 +284,6 @@ export class MapVariationComponent implements AfterViewInit {
     const variacionPoblacion = this.mapDataService.getVariacionPoblacion();
     const poblacion2024Data = this.mapDataService.getPoblacion2024Data();
 
-    // Create marker icons
-    const icons = {
-      positive: new Icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41],
-      }),
-      negative: new Icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41],
-      }),
-      neutral: new Icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41],
-      })
-    };
-
     // Crear marcadores directamente desde los datos de variación
     const variationMarkers = variacionPoblacion.map(variacionItem => {
       // Buscar los datos de población 2024 correspondientes
@@ -342,20 +314,17 @@ export class MapVariationComponent implements AfterViewInit {
       const variacion = poblacion2024 - poblacion2011;
       const porcentajeVariacion = Number(((variacion / poblacion2011) * 100).toFixed(2));
       
-      // Determine icon and tooltip style based on variation
-      let icon = icons.neutral;
-      let colorTooltip = 'tooltipNeutral';
+      // Determine background color based on variation
+      let backgroundColor = '#ffd700'; // neutral/yellow
       
       if (variacion > 50) {
-        icon = icons.positive;
-        colorTooltip = 'tooltipPositive';
+        backgroundColor = 'green'; // positive
       } else if (variacion < -50) {
-        icon = icons.negative;
-        colorTooltip = 'tooltipNegative';
+        backgroundColor = 'red'; // negative
       }
 
       return {
-        icon,
+        backgroundColor,
         title: `
           <div style="max-width: 280px;">
             <h4>${seccionId} - ${variacionItem['Nombre']}</h4>
@@ -370,22 +339,26 @@ export class MapVariationComponent implements AfterViewInit {
         tooltip: `${variacion > 0 ? '+' : ''}${variacion}`,
         lat: featureCorrespondiente.properties.lat,
         long: featureCorrespondiente.properties.long,
-        colorTooltip
+        variacion
       };
     }).filter(marker => marker !== null);
 
     // Add markers to map
     variationMarkers.forEach(point => {
       if (point && point.lat && point.long) {
+        // Create a divIcon with just the number and colored background
+        const numberIcon = divIcon({
+          className: 'number-marker',
+          html: `<div class="marker-number" style="background-color: ${point.backgroundColor}">${point.tooltip}</div>`,
+          iconSize: [30, 30],
+          iconAnchor: [15, 15],
+        });
+
         marker([point.lat, point.long], {
-          icon: point.icon,
+          icon: numberIcon,
         })
           .addTo(mapVariation)
-          .bindPopup(point.title)
-          .bindTooltip(point.tooltip, {
-            permanent: true,
-            className: point.colorTooltip,
-          });
+          .bindPopup(point.title);
       }
     });
 
