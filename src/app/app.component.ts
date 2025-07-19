@@ -6,11 +6,10 @@ import MapComponent from './map/map.component';
 import MapVarComponent from './variacion/var.component';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-	imports: [NavbarComponent, RouterOutlet, FooterComponent, MapComponent, MapVarComponent],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    imports: [NavbarComponent, RouterOutlet, FooterComponent, MapComponent, MapVarComponent],
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   public router = inject(Router);

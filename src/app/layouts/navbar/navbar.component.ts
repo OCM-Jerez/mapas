@@ -3,11 +3,10 @@ import { Router } from '@angular/router';
 
 
 @Component({
-	selector: 'app-navbar',
-	templateUrl: './navbar.component.html',
-	styleUrls: ['./navbar.component.scss'],
-	standalone: true,
-	imports: []
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.scss'],
+    imports: []
 })
 export class NavbarComponent {
 	
