@@ -1,0 +1,1100 @@
+{
+  "01-001": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.264",
+    "TOTAL": "204",
+    "censo2022": "1138",
+    "censo2004": "934"
+  },
+  "01-002": {
+    "backgroundColor": "tooltipRed",
+    "censados": "799",
+    "TOTAL": "-92",
+    "censo2022": "1019",
+    "censo2004": "1111"
+  },
+  "01-003": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "616",
+    "TOTAL": "15",
+    "censo2022": "811",
+    "censo2004": "796"
+  },
+  "01-004": {
+    "backgroundColor": "tooltipRed",
+    "censados": "976",
+    "TOTAL": "-230",
+    "censo2022": "1211",
+    "censo2004": "1441"
+  },
+  "01-005": {
+    "backgroundColor": "tooltipRed",
+    "censados": "561",
+    "TOTAL": "-127",
+    "censo2022": "638",
+    "censo2004": "765"
+  },
+  "06-001": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.674",
+    "TOTAL": "455",
+    "censo2022": "2275",
+    "censo2004": "1820"
+  },
+  "06-002": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.485",
+    "TOTAL": "-58",
+    "censo2022": "1812",
+    "censo2004": "1870"
+  },
+  "06-003": {
+    "backgroundColor": "tooltipRed",
+    "censados": "846",
+    "TOTAL": "-320",
+    "censo2022": "987",
+    "censo2004": "1307"
+  },
+  "06-004": {
+    "backgroundColor": "tooltipRed",
+    "censados": "666",
+    "TOTAL": "-159",
+    "censo2022": "803",
+    "censo2004": "962"
+  },
+  "06-005": {
+    "backgroundColor": "tooltipRed",
+    "censados": "836",
+    "TOTAL": "-288",
+    "censo2022": "934",
+    "censo2004": "1222"
+  },
+  "06-006": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.744",
+    "TOTAL": "-676",
+    "censo2022": "1064",
+    "censo2004": "1740"
+  },
+  "06-007": {
+    "backgroundColor": "tooltipRed",
+    "censados": "980",
+    "TOTAL": "-308",
+    "censo2022": "1166",
+    "censo2004": "1474"
+  },
+  "06-008": {
+    "backgroundColor": "tooltipRed",
+    "censados": "575",
+    "TOTAL": "-186",
+    "censo2022": "657",
+    "censo2004": "843"
+  },
+  "06-009": {
+    "backgroundColor": "tooltipRed",
+    "censados": "728",
+    "TOTAL": "-170",
+    "censo2022": "895",
+    "censo2004": "1065"
+  },
+  "06-010": {
+    "backgroundColor": "tooltipRed",
+    "censados": "804",
+    "TOTAL": "-257",
+    "censo2022": "896",
+    "censo2004": "1153"
+  },
+  "06-011": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.360",
+    "TOTAL": "297",
+    "censo2022": "1484",
+    "censo2004": "1187"
+  },
+  "06-013": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "898",
+    "TOTAL": "293",
+    "censo2022": "993",
+    "censo2004": "700"
+  },
+  "06-014": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "973",
+    "TOTAL": "424",
+    "censo2022": "1091",
+    "censo2004": "667"
+  },
+  "06-016": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.001",
+    "TOTAL": "-1187",
+    "censo2022": "1196",
+    "censo2004": "2383"
+  },
+  "06-017": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.053",
+    "TOTAL": "-240",
+    "censo2022": "1232",
+    "censo2004": "1472"
+  },
+  "06-018": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.338",
+    "TOTAL": "-181",
+    "censo2022": "1598",
+    "censo2004": "1779"
+  },
+  "06-019": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.099",
+    "TOTAL": "-404",
+    "censo2022": "1219",
+    "censo2004": "1623"
+  },
+  "06-020": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.359",
+    "TOTAL": "-442",
+    "censo2022": "1525",
+    "censo2004": "1967"
+  },
+  "06-021": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.263",
+    "TOTAL": "-283",
+    "censo2022": "1508",
+    "censo2004": "1791"
+  },
+  "06-022": {
+    "backgroundColor": "tooltipRed",
+    "censados": "698",
+    "TOTAL": "-203",
+    "censo2022": "768",
+    "censo2004": "971"
+  },
+  "06-023": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.116",
+    "TOTAL": "158",
+    "censo2022": "1333",
+    "censo2004": "1175"
+  },
+  "06-024": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.416",
+    "TOTAL": "-533",
+    "censo2022": "1568",
+    "censo2004": "2101"
+  },
+  "06-025": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.077",
+    "TOTAL": "-27",
+    "censo2022": "1301",
+    "censo2004": "1328"
+  },
+  "06-026": {
+    "backgroundColor": "tooltipRed",
+    "censados": "918",
+    "TOTAL": "-280",
+    "censo2022": "988",
+    "censo2004": "1268"
+  },
+  "06-028": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.679",
+    "TOTAL": "-534",
+    "censo2022": "1110",
+    "censo2004": "1644"
+  },
+  "06-029": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.038",
+    "TOTAL": "-666",
+    "censo2022": "1575",
+    "censo2004": "2241"
+  },
+  "06-030": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.231",
+    "TOTAL": "382",
+    "censo2022": "1647",
+    "censo2004": "1265"
+  },
+  "06-031": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.049",
+    "TOTAL": "-153",
+    "censo2022": "1349",
+    "censo2004": "1502"
+  },
+  "06-032": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.171",
+    "TOTAL": "53",
+    "censo2022": "1688",
+    "censo2004": "1635"
+  },
+  "06-033": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.361",
+    "TOTAL": "-236",
+    "censo2022": "1717",
+    "censo2004": "1953"
+  },
+  "06-034": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.735",
+    "TOTAL": "-858",
+    "censo2022": "1089",
+    "censo2004": "1947"
+  },
+  "06-035": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.260",
+    "TOTAL": "972",
+    "censo2022": "2511",
+    "censo2004": "1539"
+  },
+  "06-036": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.510",
+    "TOTAL": "1161",
+    "censo2022": "2160",
+    "censo2004": "999"
+  },
+  "06-037": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.193",
+    "TOTAL": "-13",
+    "censo2022": "1503",
+    "censo2004": "1516"
+  },
+  "06-038": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.266",
+    "TOTAL": "65",
+    "censo2022": "1740",
+    "censo2004": "1675"
+  },
+  "06-039": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.492",
+    "TOTAL": "366",
+    "censo2022": "2174",
+    "censo2004": "1808"
+  },
+  "06-040": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.077",
+    "TOTAL": "NaN",
+    "censo2022": "1629",
+    "censo2004": "newValue2"
+  },
+  "06-041": {
+    "backgroundColor": "tooltipRed",
+    "censados": "937",
+    "TOTAL": "NaN",
+    "censo2022": "1215",
+    "censo2004": "newValue2"
+  },
+  "06-042": {
+    "backgroundColor": "tooltipRed",
+    "censados": "883",
+    "TOTAL": "NaN",
+    "censo2022": "1279",
+    "censo2004": "newValue2"
+  },
+  "06-043": {
+    "backgroundColor": "tooltipRed",
+    "censados": "796",
+    "TOTAL": "NaN",
+    "censo2022": "1144",
+    "censo2004": "newValue2"
+  },
+  "06-044": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.046",
+    "TOTAL": "NaN",
+    "censo2022": "1934",
+    "censo2004": "newValue2"
+  },
+  "06-045": {
+    "backgroundColor": "tooltipRed",
+    "censados": "633",
+    "TOTAL": "NaN",
+    "censo2022": "964",
+    "censo2004": "newValue2"
+  },
+  "06-046": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.209",
+    "TOTAL": "NaN",
+    "censo2022": "2113",
+    "censo2004": "newValue2"
+  },
+  "06-047": {
+    "backgroundColor": "tooltipRed",
+    "censados": "899",
+    "TOTAL": "NaN",
+    "censo2022": "1206",
+    "censo2004": "newValue2"
+  },
+  "06-048": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.303",
+    "TOTAL": "NaN",
+    "censo2022": "1930",
+    "censo2004": "newValue2"
+  },
+  "06-049": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.019",
+    "TOTAL": "NaN",
+    "censo2022": "1446",
+    "censo2004": "newValue2"
+  },
+  "03-001": {
+    "backgroundColor": "tooltipRed",
+    "censados": "649",
+    "TOTAL": "-84",
+    "censo2022": "666",
+    "censo2004": "750"
+  },
+  "03-002": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.137",
+    "TOTAL": "-184",
+    "censo2022": "1388",
+    "censo2004": "1572"
+  },
+  "03-003": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.183",
+    "TOTAL": "-200",
+    "censo2022": "1434",
+    "censo2004": "1634"
+  },
+  "03-004": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.178",
+    "TOTAL": "633",
+    "censo2022": "1491",
+    "censo2004": "858"
+  },
+  "03-005": {
+    "backgroundColor": "tooltipRed",
+    "censados": "751",
+    "TOTAL": "-337",
+    "censo2022": "859",
+    "censo2004": "1196"
+  },
+  "03-006": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.118",
+    "TOTAL": "-364",
+    "censo2022": "1269",
+    "censo2004": "1633"
+  },
+  "03-007": {
+    "backgroundColor": "tooltipRed",
+    "censados": "801",
+    "TOTAL": "-146",
+    "censo2022": "1019",
+    "censo2004": "1165"
+  },
+  "03-008": {
+    "backgroundColor": "tooltipRed",
+    "censados": "951",
+    "TOTAL": "-229",
+    "censo2022": "1136",
+    "censo2004": "1365"
+  },
+  "03-009": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "768",
+    "TOTAL": "24",
+    "censo2022": "953",
+    "censo2004": "929"
+  },
+  "03-010": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "636",
+    "TOTAL": "60",
+    "censo2022": "832",
+    "censo2004": "772"
+  },
+  "03-011": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.078",
+    "TOTAL": "-414",
+    "censo2022": "1227",
+    "censo2004": "1641"
+  },
+  "03-012": {
+    "backgroundColor": "tooltipRed",
+    "censados": "699",
+    "TOTAL": "-169",
+    "censo2022": "876",
+    "censo2004": "1045"
+  },
+  "03-013": {
+    "backgroundColor": "tooltipRed",
+    "censados": "732",
+    "TOTAL": "-257",
+    "censo2022": "824",
+    "censo2004": "1081"
+  },
+  "03-014": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.022",
+    "TOTAL": "-166",
+    "censo2022": "1305",
+    "censo2004": "1471"
+  },
+  "03-015": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.016",
+    "TOTAL": "182",
+    "censo2022": "1295",
+    "censo2004": "1113"
+  },
+  "03-016": {
+    "backgroundColor": "tooltipRed",
+    "censados": "664",
+    "TOTAL": "-247",
+    "censo2022": "715",
+    "censo2004": "962"
+  },
+  "03-018": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.660",
+    "TOTAL": "158",
+    "censo2022": "1265",
+    "censo2004": "1107"
+  },
+  "03-020": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.273",
+    "TOTAL": "274",
+    "censo2022": "1472",
+    "censo2004": "1198"
+  },
+  "09-001": {
+    "backgroundColor": "tooltipRed",
+    "censados": "524",
+    "TOTAL": "NaN",
+    "censo2022": "newValue1",
+    "censo2004": "814"
+  },
+  "09-002": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.222",
+    "TOTAL": "388",
+    "censo2022": "1377",
+    "censo2004": "989"
+  },
+  "09-004": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1,537",
+    "TOTAL": "-213",
+    "censo2022": "1879",
+    "censo2004": "2092"
+  },
+  "09-005": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.445",
+    "TOTAL": "206",
+    "censo2022": "1841",
+    "censo2004": "1635"
+  },
+  "09-008": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.124",
+    "TOTAL": "200",
+    "censo2022": "1451",
+    "censo2004": "1251"
+  },
+  "09-009": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "562",
+    "TOTAL": "90",
+    "censo2022": "893",
+    "censo2004": "803"
+  },
+  "09-006": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.258",
+    "TOTAL": "-54",
+    "censo2022": "1506",
+    "censo2004": "1560"
+  },
+  "09-007": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.638",
+    "TOTAL": "-78",
+    "censo2022": "1978",
+    "censo2004": "2056"
+  },
+  "09-010": {
+    "backgroundColor": "tooltipRed",
+    "censados": "657",
+    "TOTAL": "-233",
+    "censo2022": "688",
+    "censo2004": "921"
+  },
+  "09-011": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.055",
+    "TOTAL": "-58",
+    "censo2022": "1183",
+    "censo2004": "1241"
+  },
+  "09-012": {
+    "backgroundColor": "tooltipRed",
+    "censados": "882",
+    "TOTAL": "-1325",
+    "censo2022": "1002",
+    "censo2004": "2327"
+  },
+  "09-013": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.295",
+    "TOTAL": "225",
+    "censo2022": "1695",
+    "censo2004": "1470"
+  },
+  "09-014": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.273",
+    "TOTAL": "NaN",
+    "censo2022": "1496",
+    "censo2004": "newValue2"
+  },
+  "02-001": {
+    "backgroundColor": "tooltipRed",
+    "censados": "910",
+    "TOTAL": "-81",
+    "censo2022": "1083",
+    "censo2004": "1164"
+  },
+  "02-002": {
+    "backgroundColor": "tooltipRed",
+    "censados": "865",
+    "TOTAL": "-282",
+    "censo2022": "951",
+    "censo2004": "1233"
+  },
+  "02-003": {
+    "backgroundColor": "tooltipRed",
+    "censados": "876",
+    "TOTAL": "-199",
+    "censo2022": "1057",
+    "censo2004": "1256"
+  },
+  "02-004": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.204",
+    "TOTAL": "614",
+    "censo2022": "1489",
+    "censo2004": "875"
+  },
+  "02-005": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.327",
+    "TOTAL": "-640",
+    "censo2022": "1556",
+    "censo2004": "2196"
+  },
+  "02-006": {
+    "backgroundColor": "tooltipRed",
+    "censados": "857",
+    "TOTAL": "-77",
+    "censo2022": "1090",
+    "censo2004": "1167"
+  },
+  "02-007": {
+    "backgroundColor": "tooltipRed",
+    "censados": "639",
+    "TOTAL": "-102",
+    "censo2022": "818",
+    "censo2004": "920"
+  },
+  "02-008": {
+    "backgroundColor": "tooltipRed",
+    "censados": "789",
+    "TOTAL": "-233",
+    "censo2022": "912",
+    "censo2004": "1145"
+  },
+  "02-009": {
+    "backgroundColor": "tooltipRed",
+    "censados": "732",
+    "TOTAL": "-1577",
+    "censo2022": "952",
+    "censo2004": "2529"
+  },
+  "02-010": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "869",
+    "TOTAL": "187",
+    "censo2022": "1228",
+    "censo2004": "1041"
+  },
+  "02-011": {
+    "backgroundColor": "tooltipRed",
+    "censados": "917",
+    "TOTAL": "-140",
+    "censo2022": "1183",
+    "censo2004": "1323"
+  },
+  "02-012": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "874",
+    "TOTAL": "164",
+    "censo2022": "1190",
+    "censo2004": "1026"
+  },
+  "02-013": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "695",
+    "TOTAL": "46",
+    "censo2022": "920",
+    "censo2004": "874"
+  },
+  "02-023": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.137",
+    "TOTAL": "-259",
+    "censo2022": "1320",
+    "censo2004": "1579"
+  },
+  "02-014": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.084",
+    "TOTAL": "481",
+    "censo2022": "1260",
+    "censo2004": "779"
+  },
+  "02-015": {
+    "backgroundColor": "tooltipRed",
+    "censados": "952",
+    "TOTAL": "-310",
+    "censo2022": "1162",
+    "censo2004": "1472"
+  },
+  "02-016": {
+    "backgroundColor": "tooltipRed",
+    "censados": "800",
+    "TOTAL": "-234",
+    "censo2022": "977",
+    "censo2004": "1211"
+  },
+  "02-017": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.168",
+    "TOTAL": "728",
+    "censo2022": "1439",
+    "censo2004": "711"
+  },
+  "02-021": {
+    "backgroundColor": "tooltipRed",
+    "censados": "780",
+    "TOTAL": "-4",
+    "censo2022": "980",
+    "censo2004": "984"
+  },
+  "02-022": {
+    "backgroundColor": "tooltipRed",
+    "censados": "793",
+    "TOTAL": "-124",
+    "censo2022": "1018",
+    "censo2004": "1142"
+  },
+  "02-024": {
+    "backgroundColor": "tooltipRed",
+    "censados": "946",
+    "TOTAL": "-48",
+    "censo2022": "1055",
+    "censo2004": "1103"
+  },
+  "02-025": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.729",
+    "TOTAL": "-577",
+    "censo2022": "1347",
+    "censo2004": "1924"
+  },
+  "02-026": {
+    "backgroundColor": "tooltipRed",
+    "censados": "747",
+    "TOTAL": "NaN",
+    "censo2022": "986",
+    "censo2004": "newValue2"
+  },
+  "02-027": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.132",
+    "TOTAL": "NaN",
+    "censo2022": "1448",
+    "censo2004": "newValue2"
+  },
+  "04-001": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.457",
+    "TOTAL": "-251",
+    "censo2022": "1736",
+    "censo2004": "1987"
+  },
+  "04-002": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.489",
+    "TOTAL": "-566",
+    "censo2022": "1614",
+    "censo2004": "2180"
+  },
+  "04-003": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.313",
+    "TOTAL": "966",
+    "censo2022": "2636",
+    "censo2004": "1670"
+  },
+  "04-004": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.274",
+    "TOTAL": "-380",
+    "censo2022": "1429",
+    "censo2004": "1809"
+  },
+  "04-005": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.444",
+    "TOTAL": "-281",
+    "censo2022": "1637",
+    "censo2004": "1918"
+  },
+  "04-006": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.476",
+    "TOTAL": "112",
+    "censo2022": "1881",
+    "censo2004": "1769"
+  },
+  "04-007": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.157",
+    "TOTAL": "-259",
+    "censo2022": "1321",
+    "censo2004": "1580"
+  },
+  "04-008": {
+    "backgroundColor": "tooltipRed",
+    "censados": "919",
+    "TOTAL": "-467",
+    "censo2022": "1348",
+    "censo2004": "1815"
+  },
+  "04-009": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.254",
+    "TOTAL": "-64",
+    "censo2022": "1597",
+    "censo2004": "1661"
+  },
+  "04-010": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.138",
+    "TOTAL": "319",
+    "censo2022": "1457",
+    "censo2004": "1138"
+  },
+  "04-011": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.335",
+    "TOTAL": "NaN",
+    "censo2022": "2191",
+    "censo2004": "newValue2"
+  },
+  "04-012": {
+    "backgroundColor": "tooltipRed",
+    "censados": "702",
+    "TOTAL": "NaN",
+    "censo2022": "955",
+    "censo2004": "newValue2"
+  },
+  "04-013": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.260",
+    "TOTAL": "NaN",
+    "censo2022": "2167",
+    "censo2004": "newValue2"
+  },
+  "05-001": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.163",
+    "TOTAL": "1175",
+    "censo2022": "1897",
+    "censo2004": "722"
+  },
+  "05-002": {
+    "backgroundColor": "tooltipRed",
+    "censados": "654",
+    "TOTAL": "-294",
+    "censo2022": "675",
+    "censo2004": "969"
+  },
+  "05-003": {
+    "backgroundColor": "tooltipRed",
+    "censados": "949",
+    "TOTAL": "-339",
+    "censo2022": "1008",
+    "censo2004": "1347"
+  },
+  "05-004": {
+    "backgroundColor": "tooltipRed",
+    "censados": "968",
+    "TOTAL": "-382",
+    "censo2022": "1041",
+    "censo2004": "1423"
+  },
+  "05-005": {
+    "backgroundColor": "tooltipRed",
+    "censados": "841",
+    "TOTAL": "-293",
+    "censo2022": "935",
+    "censo2004": "1228"
+  },
+  "05-006": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.235",
+    "TOTAL": "-502",
+    "censo2022": "1330",
+    "censo2004": "1832"
+  },
+  "05-007": {
+    "backgroundColor": "tooltipRed",
+    "censados": "590",
+    "TOTAL": "-134",
+    "censo2022": "734",
+    "censo2004": "868"
+  },
+  "05-008": {
+    "backgroundColor": "tooltipRed",
+    "censados": "755",
+    "TOTAL": "-260",
+    "censo2022": "894",
+    "censo2004": "1154"
+  },
+  "05-009": {
+    "backgroundColor": "tooltipRed",
+    "censados": "565",
+    "TOTAL": "-236",
+    "censo2022": "614",
+    "censo2004": "850"
+  },
+  "05-010": {
+    "backgroundColor": "tooltipRed",
+    "censados": "651",
+    "TOTAL": "-199",
+    "censo2022": "800",
+    "censo2004": "999"
+  },
+  "05-011": {
+    "backgroundColor": "tooltipRed",
+    "censados": "805",
+    "TOTAL": "-284",
+    "censo2022": "940",
+    "censo2004": "1224"
+  },
+  "05-012": {
+    "backgroundColor": "tooltipRed",
+    "censados": "988",
+    "TOTAL": "-264",
+    "censo2022": "1109",
+    "censo2004": "1373"
+  },
+  "05-013": {
+    "backgroundColor": "tooltipRed",
+    "censados": "707",
+    "TOTAL": "-258",
+    "censo2022": "727",
+    "censo2004": "985"
+  },
+  "07-001": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "791",
+    "TOTAL": "99",
+    "censo2022": "1050",
+    "censo2004": "951"
+  },
+  "07-002": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.155",
+    "TOTAL": "202",
+    "censo2022": "1391",
+    "censo2004": "1189"
+  },
+  "07-003": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "926",
+    "TOTAL": "193",
+    "censo2022": "1244",
+    "censo2004": "1051"
+  },
+  "07-004": {
+    "backgroundColor": "tooltipRed",
+    "censados": "602",
+    "TOTAL": "-211",
+    "censo2022": "680",
+    "censo2004": "891"
+  },
+  "07-005": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.005",
+    "TOTAL": "57",
+    "censo2022": "1018",
+    "censo2004": "961"
+  },
+  "07-006": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.127",
+    "TOTAL": "561",
+    "censo2022": "1320",
+    "censo2004": "759"
+  },
+  "07-007": {
+    "backgroundColor": "tooltipRed",
+    "TOTAL": "NaN",
+    "censo2022": "newValue1",
+    "censo2004": "959"
+  },
+  "07-009": {
+    "backgroundColor": "tooltipRed",
+    "censados": "764",
+    "TOTAL": "-261",
+    "censo2022": "930",
+    "censo2004": "1191"
+  },
+  "07-010": {
+    "backgroundColor": "tooltipRed",
+    "censados": "840",
+    "TOTAL": "-299",
+    "censo2022": "946",
+    "censo2004": "1245"
+  },
+  "07-011": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.546",
+    "TOTAL": "-382",
+    "censo2022": "868",
+    "censo2004": "1250"
+  },
+  "07-012": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.347",
+    "TOTAL": "-10",
+    "censo2022": "1657",
+    "censo2004": "1667"
+  },
+  "07-013": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.143",
+    "TOTAL": "-197",
+    "censo2022": "1314",
+    "censo2004": "1511"
+  },
+  "07-014": {
+    "backgroundColor": "tooltipRed",
+    "censados": "968",
+    "TOTAL": "-147",
+    "censo2022": "1250",
+    "censo2004": "1397"
+  },
+  "07-015": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.135",
+    "TOTAL": "-108",
+    "censo2022": "1528",
+    "censo2004": "1636"
+  },
+  "07-016": {
+    "backgroundColor": "tooltipRed",
+    "censados": "813",
+    "TOTAL": "-897",
+    "censo2022": "1234",
+    "censo2004": "2131"
+  },
+  "07-017": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.036",
+    "TOTAL": "-333",
+    "censo2022": "1160",
+    "censo2004": "1493"
+  },
+  "07-018": {
+    "backgroundColor": "tooltipRed",
+    "censados": "847",
+    "TOTAL": "NaN",
+    "censo2022": "1139",
+    "censo2004": "newValue2"
+  },
+  "07-020": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.750",
+    "TOTAL": "NaN",
+    "censo2022": "1339",
+    "censo2004": "newValue2"
+  },
+  "07-021": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.519",
+    "TOTAL": "NaN",
+    "censo2022": "1691",
+    "censo2004": "newValue2"
+  },
+  "10-001": {
+    "backgroundColor": "tooltipRed",
+    "censados": "619",
+    "TOTAL": "-57",
+    "censo2022": "793",
+    "censo2004": "850"
+  },
+  "10-002": {
+    "backgroundColor": "tooltipRed",
+    "censados": "704",
+    "TOTAL": "-244",
+    "censo2022": "784",
+    "censo2004": "1028"
+  },
+  "10-003": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.047",
+    "TOTAL": "108",
+    "censo2022": "1271",
+    "censo2004": "1163"
+  },
+  "10-004": {
+    "backgroundColor": "tooltipRed",
+    "censados": "624",
+    "TOTAL": "-129",
+    "censo2022": "709",
+    "censo2004": "838"
+  },
+  "08-001": {
+    "backgroundColor": "tooltipGreen",
+    "censados": "1.078",
+    "TOTAL": "524",
+    "censo2022": "1940",
+    "censo2004": "1416"
+  },
+  "08-002": {
+    "backgroundColor": "tooltipRed",
+    "censados": "1.254",
+    "TOTAL": "-114",
+    "censo2022": "1516",
+    "censo2004": "1630"
+  }
+}

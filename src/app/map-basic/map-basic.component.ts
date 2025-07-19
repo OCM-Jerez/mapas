@@ -1,18 +1,20 @@
-import { AfterViewInit, Component } from '@angular/core';
-import { geoJSON, map, tileLayer, Layer, LeafletEvent } from 'leaflet';
+import { AfterViewInit, Component, signal } from '@angular/core';
+import { geoJSON, map, tileLayer, Layer, LeafletEvent, Map } from 'leaflet';
 import { GeoJsonObject, Feature, Geometry } from 'geojson';
-import secionesCensales from '../../assets/data/secionesCensalesUpdateCenso2004-2022UpdateTotal.json';
+import seccionesCensalesGeometry from '../../assets/data/secciones-censales-geometry.json';
 
 @Component({
   selector: 'app-map-basic',
   templateUrl: './map-basic.component.html',
-  styleUrls: ['./map-basic.component.scss']
+  styleUrls: ['./map-basic.component.scss'],
+  standalone: true
 })
 export class MapBasicComponent implements AfterViewInit {
-  geoJson: GeoJsonObject | undefined;
+  private readonly mapInstance = signal<Map | null>(null);
+  private readonly geoJsonLayer = signal<Layer | null>(null);
   
   // Configuración del mapa base
-  tileLayerConfig = {
+  private readonly tileLayerConfig = {
     maxZoom: 17,
     minZoom: 10,
     attribution:
@@ -22,7 +24,7 @@ export class MapBasicComponent implements AfterViewInit {
     id: 'mapbox.light',
   };
 
-  onEachFeature = (feature: Feature<Geometry, any>, layer: Layer): void => {
+  private readonly onEachFeature = (feature: Feature<Geometry, any>, layer: Layer): void => {
     layer.on({
       mouseover: this.highlightFeature,
       mouseout: this.resetHighlight,
@@ -30,7 +32,7 @@ export class MapBasicComponent implements AfterViewInit {
     });
   };
 
-  highlightFeature = (e: LeafletEvent): void => {
+  private readonly highlightFeature = (e: LeafletEvent): void => {
     const layer = e.target;
     layer.setStyle({
       weight: 3,
@@ -40,7 +42,7 @@ export class MapBasicComponent implements AfterViewInit {
     });
   };
 
-  resetHighlight = (e: LeafletEvent): void => {
+  private readonly resetHighlight = (e: LeafletEvent): void => {
     const layer = e.target;
     layer.setStyle({
       weight: 2,
@@ -50,7 +52,7 @@ export class MapBasicComponent implements AfterViewInit {
     });
   };
 
-  showSectionInfo = (e: LeafletEvent): void => {
+  private readonly showSectionInfo = (e: LeafletEvent): void => {
     const layer = e.target;
     const properties = layer.feature.properties;
     
@@ -58,10 +60,9 @@ export class MapBasicComponent implements AfterViewInit {
       <h4>Sección Censal: ${properties.ID}</h4>
       <p><strong>Distrito:</strong> ${properties.ID.split('-')[0]}</p>
       <p><strong>Sección:</strong> ${properties.ID.split('-')[1]}</p>
+      <p><strong>Coordenadas:</strong> ${properties.lat.toFixed(6)}, ${properties.long.toFixed(6)}</p>
     `).openPopup();
   };
-
-  constructor() {}
 
   ngAfterViewInit(): void {
     console.log('Iniciando map-basic component');
@@ -75,13 +76,15 @@ export class MapBasicComponent implements AfterViewInit {
       minZoom: 11,
     });
 
+    this.mapInstance.set(mapBasic);
+
     tileLayer(
       'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       this.tileLayerConfig
     ).addTo(mapBasic);
 
-    // Añadir las secciones censales al mapa sin datos adicionales
-    const geoJson = geoJSON(secionesCensales as GeoJsonObject, {
+    // Añadir las secciones censales al mapa usando el archivo de geometría
+    const geoJsonLayer = geoJSON(seccionesCensalesGeometry as GeoJsonObject, {
       onEachFeature: this.onEachFeature,
       style: {
         weight: 2,
@@ -92,6 +95,8 @@ export class MapBasicComponent implements AfterViewInit {
       }
     }).addTo(mapBasic);
 
-    console.log('Mapa básico creado con', secionesCensales.features.length, 'secciones censales');
+    this.geoJsonLayer.set(geoJsonLayer);
+
+    console.log('Mapa básico creado con', seccionesCensalesGeometry.features.length, 'secciones censales');
   }
 }
