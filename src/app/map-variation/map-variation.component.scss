@@ -142,9 +142,9 @@
   margin-top: 5px;
   margin-left: auto;
   margin-right: auto;
-  background-color: aquamarine;
   height: 87vh;
-  width: 98vh;
+  width: 98vw;
+  max-width: 100%;
 }
 
 .tooltipPositive {
@@ -166,4 +166,28 @@
   color: black !important;
   border: none !important;
   font-weight: bold !important;
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  #map-variation {
+    height: 80vh;
+    width: 98vw;
+    margin-top: 20px;
+  }
+
+  .map-controls {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .toggle-button, 
+  .perimetro-button, 
+  .perimetro-info-button, 
+  .distrito-toggle-button, 
+  .perimetro-intramuros-toggle-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
 }
