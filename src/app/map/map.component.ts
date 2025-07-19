@@ -2,14 +2,14 @@ import { AfterViewInit, Component } from '@angular/core';
 import { GeoJsonObject } from 'geojson';
 import { Map, geoJSON, polygon, polyline, tileLayer } from 'leaflet';
 
-import { ds02004 } from '../../assets/data/02-004';
-import { ds02011 } from '../../assets/data/02-011';
-import { ds02013 } from '../../assets/data/02-013';
-import { ds02014 } from '../../assets/data/02-014';
-import { ds02021 } from '../../assets/data/02-021';
-import { ds02026 } from '../../assets/data/02-026';
-import { distritoCentro } from '../../assets/data/distritoCentro';
-import { limitesAlbarizuela } from '../../assets/data/limitesAlbarizuela';
+import { ds02004 } from '../../assets/data/secciones-censales/02-004';
+import { ds02011 } from '../../assets/data/secciones-censales/02-011';
+import { ds02013 } from '../../assets/data/secciones-censales/02-013';
+import { ds02014 } from '../../assets/data/secciones-censales/02-014';
+import { ds02021 } from '../../assets/data/secciones-censales/02-021';
+import { ds02026 } from '../../assets/data/secciones-censales/02-026';
+import { distritoCentro } from '../../assets/data/distritos/distritoCentro';
+import { limitesAlbarizuela } from '../../assets/data/Albarizuela/limitesAlbarizuela';
 
 import secionesCensales from '../../assets/data/secionesCensalesUpdateCenso2004-2022UpdateTotal.json';
 
