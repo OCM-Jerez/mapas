@@ -138,13 +138,14 @@
   }
 }
 
-#map-variation {
+.map-container {
+  height: 80vh;
+  width: 98vw;
+  max-width: 100%;
   margin-top: 5px;
   margin-left: auto;
   margin-right: auto;
-  height: 87vh;
-  width: 98vw;
-  max-width: 100%;
+  z-index: 1;
 }
 
 .tooltipPositive {
@@ -170,8 +171,8 @@
 
 // Responsive design
 @media (max-width: 768px) {
-  #map-variation {
-    height: 80vh;
+  .map-container {
+    height: 75vh;
     width: 98vw;
     margin-top: 20px;
   }

@@ -1,5 +1,5 @@
 .map-container {
-  height: 87vh;
+  height: 80vh;
   width: 98vw;
   max-width: 100%;
   margin-top: 5px;
@@ -30,7 +30,7 @@
 // Responsive design
 @media (max-width: 768px) {
   .map-container {
-    height: 80vh;
+    height: 75vh;
     width: 98vw;
     margin-top: 20px;
   }

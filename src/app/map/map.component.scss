@@ -2,7 +2,7 @@
   margin-top: 40px;
   margin-left: auto;
   margin-right: auto;
-  height: 90vh;
+  height: 80vh;
   width: 98vw;
   max-width: 100%;
   transition: opacity 0.3s ease-in-out;
@@ -42,7 +42,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 90vh;
+  height: 80vh;
   margin-top: 40px;
 
   .error-message {
@@ -96,13 +96,13 @@
 @media (max-width: 768px) {
   #map {
     width: 98vw;
-    height: 80vh;
+    height: 75vh;
     margin-top: 20px;
   }
 
   .loading-container,
   .error-container {
-    height: 80vh;
+    height: 75vh;
     margin-top: 20px;
   }
 
