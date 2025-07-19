@@ -25,17 +25,8 @@ export class MapComponent implements AfterViewInit, OnDestroy {
   readonly error = signal<string | null>(null);
 
   // Computed signals for data processing
-  private readonly variationMap = computed(() => this.mapDataService.createVariationMap());
-  private readonly poblacion2024Map = computed(() => this.mapDataService.createPoblacion2024Map());
   private readonly secionesCensales = computed(() => this.mapDataService.getSecionesCensales());
-  private readonly validFeatures = computed(() => 
-    this.mapDataService.filterValidFeatures(
-      this.secionesCensales().features as SectionFeature[],
-      this.variationMap(),
-      this.poblacion2024Map()
-    )
-  );
-
+  
   // Map configuration
   private readonly tileLayerConfig = {
     maxZoom: 17,
@@ -48,7 +39,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
   };
 
   private readonly mapCenter: [number, number] = [36.684881, -6.132903];
-  private readonly defaultZoom = 16;
+  private readonly defaultZoom = 15;
 
   // Event handlers with proper typing
   private readonly onEachFeature = (feature: any, layer: L.Layer): void => {
@@ -139,18 +130,14 @@ export class MapComponent implements AfterViewInit, OnDestroy {
 
   private addMarkers(mapInstance: L.Map): void {
     const secionesCensalesData = this.secionesCensales();
-    const variationMap = this.variationMap();
-    const poblacion2024Map = this.poblacion2024Map();
 
     // Create icons
-    const iconGreen = this.createIcon('blue');
+    const iconBlue = this.createIcon('blue');
     
-    // Process features and create markers
+    // Process features and create markers - usar directamente las features sin filtrado
     const markersData = this.createMarkersData(
       secionesCensalesData.features as SectionFeature[],
-      variationMap,
-      poblacion2024Map,
-      iconGreen
+      iconBlue
     );
 
     // Add markers to map
@@ -180,27 +167,22 @@ export class MapComponent implements AfterViewInit, OnDestroy {
 
   private createMarkersData(
     features: SectionFeature[],
-    variationMap: Record<string, { poblacion2011: number; nombre: string }>,
-    poblacion2024Map: Record<string, number>,
     icon: L.Icon
   ): MarkerData[] {
     return features
       .filter(feature => {
-        const hasVariationData = variationMap[feature.properties.ID] !== undefined;
-        const hasPoblacion2024Data = poblacion2024Map[feature.properties.ID] !== undefined;
+        // Solo requerimos coordenadas para mostrar el marcador
         const hasCoords = feature.properties.lat && feature.properties.long;
-        return hasVariationData && hasPoblacion2024Data && hasCoords;
+        return hasCoords;
       })
       .map(feature => {
         const properties = feature.properties;
-        const variationData = variationMap[properties.ID];
-        const poblacion2024 = poblacion2024Map[properties.ID];
         
-        // Extract population data with proper index access
+        // Extract population data with proper index access - usar solo datos del JSON principal
         const censados = properties['censados'] ? properties['censados'].replace(/\./g, '') : null;
-        const censo2022 = Number(properties['censo2022']);
-        const censo2004 = Number(properties['censo2004']);
-        const total = Number(properties['TOTAL']);
+        const censo2022 = Number(properties['censo2022'] || 0);
+        const censo2004 = Number(properties['censo2004'] || 0);
+        const total = Number(properties['TOTAL'] || 0);
         
         // Calculate variation between census 2022 and 2004
         const variacion2022_2004 = censo2022 - censo2004;
@@ -211,10 +193,10 @@ export class MapComponent implements AfterViewInit, OnDestroy {
         return {
           icon,
           title: this.createPopupContent(properties, censados, censo2022, censo2004, total, variacion2022_2004, porcentajeVariacion2022_2004),
-          tooltip: total.toString(),
+          tooltip: total.toString() || properties.ID,
           lat: properties.lat!,
           long: properties.long!,
-          colorTooltip: properties['backgroundColor'] || '',
+          colorTooltip: properties['backgroundColor'] || 'tooltipBlue',
           variacion: variacion2022_2004,
         };
       });
@@ -234,12 +216,12 @@ export class MapComponent implements AfterViewInit, OnDestroy {
         <h4>${properties.ID}</h4>
         <hr style="margin: 8px 0;">
         <p><strong>Población actual (censados):</strong> ${censados ? Number(censados).toLocaleString() : 'No disponible'}</p>
-        <p><strong>Censo 2022:</strong> ${censo2022.toLocaleString()}</p>
-        <p><strong>Censo 2004:</strong> ${censo2004.toLocaleString()}</p>
-        <p><strong>Total registrado:</strong> ${total.toLocaleString()}</p>
+        <p><strong>Censo 2022:</strong> ${censo2022 > 0 ? censo2022.toLocaleString() : 'No disponible'}</p>
+        <p><strong>Censo 2004:</strong> ${censo2004 > 0 ? censo2004.toLocaleString() : 'No disponible'}</p>
+        <p><strong>Total registrado:</strong> ${total > 0 ? total.toLocaleString() : 'No disponible'}</p>
         <hr style="margin: 8px 0;">
-        <p><strong>Variación (2004-2022):</strong> ${variacion > 0 ? '+' : ''}${variacion.toLocaleString()}</p>
-        <p><strong>Porcentaje:</strong> ${porcentaje > 0 ? '+' : ''}${porcentaje}%</p>
+        <p><strong>Variación (2004-2022):</strong> ${censo2022 > 0 && censo2004 > 0 ? (variacion > 0 ? '+' : '') + variacion.toLocaleString() : 'No calculable'}</p>
+        <p><strong>Porcentaje:</strong> ${censo2022 > 0 && censo2004 > 0 ? (porcentaje > 0 ? '+' : '') + porcentaje + '%' : 'No calculable'}</p>
       </div>
     `;
   }

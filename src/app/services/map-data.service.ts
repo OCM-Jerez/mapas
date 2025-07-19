@@ -75,18 +75,4 @@ export class MapDataService {
     
     return poblacion2024Map;
   }
-  
-  filterValidFeatures(
-    features: SectionFeature[],
-    variacionMap: Record<string, any>,
-    poblacion2024Map: Record<string, number>
-  ): SectionFeature[] {
-    return features.filter(feature => {
-      const hasVariationData = variacionMap[feature.properties.ID] !== undefined;
-      const hasPoblacion2024Data = poblacion2024Map[feature.properties.ID] !== undefined;
-      const hasCoords = feature.properties.lat && feature.properties.long;
-      
-      return hasVariationData && hasPoblacion2024Data && hasCoords;
-    });
-  }
 }

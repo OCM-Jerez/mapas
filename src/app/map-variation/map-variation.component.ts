@@ -280,8 +280,9 @@ export class MapVariationComponent implements AfterViewInit {
   }
 
   private addVariationMarkers(mapVariation: LeafletMap, secionesCensales: any): void {
-    const variacionMap = this.mapDataService.createVariationMap();
-    const poblacion2024Map = this.mapDataService.createPoblacion2024Map();
+    // Usar directamente los datos de variación - no necesitamos crear mapas ni filtrar
+    const variacionPoblacion = this.mapDataService.getVariacionPoblacion();
+    const poblacion2024Data = this.mapDataService.getPoblacion2024Data();
 
     // Create marker icons
     const icons = {
@@ -311,16 +312,33 @@ export class MapVariationComponent implements AfterViewInit {
       })
     };
 
-    const validFeatures = this.mapDataService.filterValidFeatures(
-      secionesCensales.features,
-      variacionMap,
-      poblacion2024Map
-    );
+    // Crear marcadores directamente desde los datos de variación
+    const variationMarkers = variacionPoblacion.map(variacionItem => {
+      // Buscar los datos de población 2024 correspondientes
+      const poblacion2024Item = poblacion2024Data.find(item => 
+        item['Código sección'] === variacionItem['Código sección']
+      );
+      
+      if (!poblacion2024Item) return null;
 
-    const variationMarkers = validFeatures.map(feature => {
-      const seccionData = variacionMap[feature.properties.ID];
-      const poblacion2024 = Number(poblacion2024Map[feature.properties.ID]);
-      const poblacion2011 = Number(seccionData.poblacion2011);
+      // Extraer el ID de la sección (formato XX-XXX)
+      const codigoCompleto = variacionItem['Código sección'].toString();
+      const ultimosCinco = codigoCompleto.substring(5);
+      const distrito = ultimosCinco.substring(0, 2);
+      const seccion = ultimosCinco.substring(2, 5);
+      const seccionId = `${distrito}-${seccion}`;
+
+      // Buscar las coordenadas en el JSON principal
+      const featureCorrespondiente = secionesCensales.features.find((feature: any) => 
+        feature.properties.ID === seccionId
+      );
+
+      if (!featureCorrespondiente || !featureCorrespondiente.properties.lat || !featureCorrespondiente.properties.long) {
+        return null;
+      }
+
+      const poblacion2011 = variacionItem['Población 2011'];
+      const poblacion2024 = poblacion2024Item['Población 2024'];
       const variacion = poblacion2024 - poblacion2011;
       const porcentajeVariacion = Number(((variacion / poblacion2011) * 100).toFixed(2));
       
@@ -339,22 +357,26 @@ export class MapVariationComponent implements AfterViewInit {
       return {
         icon,
         title: `
-          <h4>${feature.properties.ID} - ${seccionData.nombre}</h4>
-          <p><strong>Población 2011:</strong> ${poblacion2011}</p>
-          <p><strong>Población 2024:</strong> ${poblacion2024}</p>
-          <p><strong>Variación:</strong> ${variacion > 0 ? '+' : ''}${variacion}</p>
-          <p><strong>Porcentaje:</strong> ${porcentajeVariacion > 0 ? '+' : ''}${porcentajeVariacion}%</p>
+          <div style="max-width: 280px;">
+            <h4>${seccionId} - ${variacionItem['Nombre']}</h4>
+            <hr style="margin: 8px 0;">
+            <p><strong>Población 2011:</strong> ${poblacion2011.toLocaleString()}</p>
+            <p><strong>Población 2024:</strong> ${poblacion2024.toLocaleString()}</p>
+            <hr style="margin: 8px 0;">
+            <p><strong>Variación (2011-2024):</strong> ${variacion > 0 ? '+' : ''}${variacion.toLocaleString()}</p>
+            <p><strong>Porcentaje:</strong> ${porcentajeVariacion > 0 ? '+' : ''}${porcentajeVariacion}%</p>
+          </div>
         `,
         tooltip: `${variacion > 0 ? '+' : ''}${variacion}`,
-        lat: feature.properties.lat,
-        long: feature.properties.long,
+        lat: featureCorrespondiente.properties.lat,
+        long: featureCorrespondiente.properties.long,
         colorTooltip
       };
-    });
+    }).filter(marker => marker !== null);
 
     // Add markers to map
     variationMarkers.forEach(point => {
-      if (point.lat && point.long) {
+      if (point && point.lat && point.long) {
         marker([point.lat, point.long], {
           icon: point.icon,
         })
