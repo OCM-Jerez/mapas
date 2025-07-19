@@ -325,9 +325,11 @@ export class MapVariationComponent implements AfterViewInit {
 
       return {
         backgroundColor,
+        // <h4>${seccionId} - ${variacionItem['Nombre']}</h4>
         title: `
           <div style="max-width: 280px;">
-            <h4>${seccionId} - ${variacionItem['Nombre']}</h4>
+                        <h4>${variacionItem['Nombre']}</h4>
+
             <hr style="margin: 8px 0;">
             <p><strong>Población 2011:</strong> ${poblacion2011.toLocaleString('es-ES', { useGrouping: true }).replace(/\s/g, '.')}</p>
             <p><strong>Población 2024:</strong> ${poblacion2024.toLocaleString('es-ES', { useGrouping: true }).replace(/\s/g, '.')}</p>
