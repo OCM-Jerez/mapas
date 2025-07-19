@@ -3,6 +3,7 @@ import { Icon, geoJSON, map, marker, tileLayer, polygon, Layer, LeafletEvent, Ma
 import { GeoJsonObject, Feature, Geometry } from 'geojson';
 
 import { MapDataService } from '@services/map-data.service';
+import { MapStateService } from '@services/map-state.service';
 import { PerimetroInfoComponent } from '../perimetro-info/perimetro-info.component';
 import { distritoCentro } from '../../assets/data/distritos/distritoCentro';
 import type { PerimetroData } from '@interfaces/map.interface';
@@ -15,6 +16,7 @@ import type { PerimetroData } from '@interfaces/map.interface';
 })
 export class MapVariationComponent implements AfterViewInit {
   private readonly mapDataService = inject(MapDataService);
+  private readonly mapStateService = inject(MapStateService);
   
   // Signals for component state
   private readonly _showMap = signal(true);
@@ -78,10 +80,16 @@ export class MapVariationComponent implements AfterViewInit {
   toggleMap(): void {
     this._showMap.update(show => !show);
     
+    // Controlar la visibilidad de la tabla a través del servicio
     if (this._showMap()) {
+      // Si mostramos el mapa, ocultamos la tabla
+      this.mapStateService.hideTable();
       setTimeout(() => {
         this.initializeMap();
       }, 0);
+    } else {
+      // Si ocultamos el mapa, mostramos la tabla
+      this.mapStateService.showTableOnly();
     }
   }
 

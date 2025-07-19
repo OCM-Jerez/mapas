@@ -1,1 +1,20 @@
-<div id="map"></div>
+@if (isLoading()) {
+  <div class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Cargando mapa...</p>
+  </div>
+}
+
+@if (error(); as errorMessage) {
+  <div class="error-container">
+    <div class="error-message">
+      <h3>Error</h3>
+      <p>{{ errorMessage }}</p>
+      <button class="retry-button" (click)="ngAfterViewInit()">
+        Reintentar
+      </button>
+    </div>
+  </div>
+}
+
+<div id="map" [class.hidden]="isLoading() || error()"></div>
