@@ -31,6 +31,69 @@
 		font-size: 11px;
 		color: #333;
 	  }
+
+	  // Estilos específicos para tooltips de variación poblacional
+	  .tooltipPositive {
+		background-color: #28a745 !important;
+		color: white !important;
+		border: none !important;
+		font-weight: bold !important;
+		font-size: 16px !important;
+		// padding: 10px 15px !important;
+		border-radius: 14px !important;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+	  }
+	
+	  .tooltipNegative {
+		background-color: #dc3545 !important;
+		color: white !important;
+		border: none !important;
+		font-weight: bold !important;
+		font-size: 16px !important;
+		padding: 10px 15px !important;
+		border-radius: 14px !important;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+	  }
+	
+	  .tooltipNeutral {
+		background-color: #ffc107 !important;
+		color: black !important;
+		border: none !important;
+		font-weight: bold !important;
+		font-size: 16px !important;
+		padding: 10px 15px !important;
+		border-radius: 14px !important;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+	  }
+
+	  // Estilos para popups de Leaflet
+	  .leaflet-popup-content {
+		font-size: 18px !important;
+		line-height: 1.6 !important;
+		
+		h4 {
+		  font-size: 22px !important;
+		  margin: 0 0 12px 0 !important;
+		  color: #2c3e50 !important;
+		  font-weight: bold !important;
+		}
+		
+		p {
+		  margin: 8px 0 !important;
+		  font-size: 18px !important;
+		  
+		  strong {
+			font-weight: 600 !important;
+			color: #34495e !important;
+		  }
+		}
+		
+		hr {
+		  margin: 12px 0 !important;
+		  border: none !important;
+		  border-top: 2px solid #bdc3c7 !important;
+		}
+	  }
 	  
 
 	.OCM-gridMenu {

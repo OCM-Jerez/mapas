@@ -329,10 +329,10 @@ export class MapVariationComponent implements AfterViewInit {
           <div style="max-width: 280px;">
             <h4>${seccionId} - ${variacionItem['Nombre']}</h4>
             <hr style="margin: 8px 0;">
-            <p><strong>Población 2011:</strong> ${poblacion2011.toLocaleString()}</p>
-            <p><strong>Población 2024:</strong> ${poblacion2024.toLocaleString()}</p>
+            <p><strong>Población 2011:</strong> ${poblacion2011.toLocaleString('es-ES', { useGrouping: true }).replace(/\s/g, '.')}</p>
+            <p><strong>Población 2024:</strong> ${poblacion2024.toLocaleString('es-ES', { useGrouping: true }).replace(/\s/g, '.')}</p>
             <hr style="margin: 8px 0;">
-            <p><strong>Variación (2011-2024):</strong> ${variacion > 0 ? '+' : ''}${variacion.toLocaleString()}</p>
+            <p><strong>Variación (2011-2024):</strong> ${variacion > 0 ? '+' : ''}${variacion.toLocaleString('es-ES', { useGrouping: true }).replace(/\s/g, '.')}</p>
             <p><strong>Porcentaje:</strong> ${porcentajeVariacion > 0 ? '+' : ''}${porcentajeVariacion}%</p>
           </div>
         `,

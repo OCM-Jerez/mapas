@@ -205,12 +205,12 @@ export class MapComponent implements AfterViewInit, OnDestroy {
       <div style="max-width: 280px;">
         <h4>${properties.ID}</h4>
         <hr style="margin: 8px 0;">
-        <p><strong>Población actual (censados):</strong> ${censados ? Number(censados).toLocaleString() : 'No disponible'}</p>
-        <p><strong>Censo 2022:</strong> ${censo2022 > 0 ? censo2022.toLocaleString() : 'No disponible'}</p>
-        <p><strong>Censo 2004:</strong> ${censo2004 > 0 ? censo2004.toLocaleString() : 'No disponible'}</p>
-        <p><strong>Total registrado:</strong> ${total > 0 ? total.toLocaleString() : 'No disponible'}</p>
+        <p><strong>Población actual (censados):</strong> ${censados ? Number(censados).toLocaleString('es-ES', { useGrouping: true }).replace(/\s/g, '.') : 'No disponible'}</p>
+        <p><strong>Censo 2022:</strong> ${censo2022 > 0 ? censo2022.toLocaleString('es-ES', { useGrouping: true }).replace(/\s/g, '.') : 'No disponible'}</p>
+        <p><strong>Censo 2004:</strong> ${censo2004 > 0 ? censo2004.toLocaleString('es-ES', { useGrouping: true }).replace(/\s/g, '.') : 'No disponible'}</p>
+        <p><strong>Total registrado:</strong> ${total > 0 ? total.toLocaleString('es-ES', { useGrouping: true }).replace(/\s/g, '.') : 'No disponible'}</p>
         <hr style="margin: 8px 0;">
-        <p><strong>Variación (2004-2022):</strong> ${censo2022 > 0 && censo2004 > 0 ? (variacion > 0 ? '+' : '') + variacion.toLocaleString() : 'No calculable'}</p>
+        <p><strong>Variación (2004-2022):</strong> ${censo2022 > 0 && censo2004 > 0 ? (variacion > 0 ? '+' : '') + variacion.toLocaleString('es-ES', { useGrouping: true }).replace(/\s/g, '.') : 'No calculable'}</p>
         <p><strong>Porcentaje:</strong> ${censo2022 > 0 && censo2004 > 0 ? (porcentaje > 0 ? '+' : '') + porcentaje + '%' : 'No calculable'}</p>
       </div>
     `;
