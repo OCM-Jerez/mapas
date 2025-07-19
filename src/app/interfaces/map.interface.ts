@@ -23,7 +23,7 @@ export interface SectionFeature {
 }
 
 export interface MarkerData {
-  icon: any;
+  icon?: any;
   title: string;
   tooltip: string;
   lat: number;

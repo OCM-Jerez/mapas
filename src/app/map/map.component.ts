@@ -39,7 +39,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
   };
 
   private readonly mapCenter: [number, number] = [36.684881, -6.132903];
-  private readonly defaultZoom = 15;
+  private readonly defaultZoom = 14;
 
   // Event handlers with proper typing
   private readonly onEachFeature = (feature: any, layer: L.Layer): void => {
@@ -130,44 +130,35 @@ export class MapComponent implements AfterViewInit, OnDestroy {
 
   private addMarkers(mapInstance: L.Map): void {
     const secionesCensalesData = this.secionesCensales();
-
-    // Create icons
-    const iconBlue = this.createIcon('blue');
     
     // Process features and create markers - usar directamente las features sin filtrado
     const markersData = this.createMarkersData(
-      secionesCensalesData.features as SectionFeature[],
-      iconBlue
+      secionesCensalesData.features as SectionFeature[]
     );
 
     // Add markers to map
     markersData.forEach(markerData => {
+      // Determine background color based on variation
+      const backgroundColor = markerData.variacion > 0 ? 'green' : 'red';
+      
+      // Create a divIcon with just the number and colored background
+      const numberIcon = L.divIcon({
+        className: 'number-marker',
+        html: `<div class="marker-number" style="background-color: ${backgroundColor}">${markerData.tooltip}</div>`,
+        iconSize: [30, 30],
+        iconAnchor: [15, 15],
+      });
+
       L.marker([markerData.lat, markerData.long], {
-        icon: markerData.icon,
+        icon: numberIcon,
       })
         .addTo(mapInstance)
-        .bindPopup(markerData.title)
-        .bindTooltip(markerData.tooltip, {
-          permanent: true,
-          className: markerData.colorTooltip,
-        });
-    });
-  }
-
-  private createIcon(color: string): L.Icon {
-    return new L.Icon({
-      iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-${color}.png`,
-      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      shadowSize: [41, 41],
+        .bindPopup(markerData.title);
     });
   }
 
   private createMarkersData(
-    features: SectionFeature[],
-    icon: L.Icon
+    features: SectionFeature[]
   ): MarkerData[] {
     return features
       .filter(feature => {
@@ -191,7 +182,6 @@ export class MapComponent implements AfterViewInit, OnDestroy {
           : 0;
         
         return {
-          icon,
           title: this.createPopupContent(properties, censados, censo2022, censo2004, total, variacion2022_2004, porcentajeVariacion2022_2004),
           tooltip: total.toString() || properties.ID,
           lat: properties.lat!,

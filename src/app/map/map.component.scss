@@ -111,3 +111,26 @@
     padding: 20px;
   }
 }
+
+// Number marker styles
+:host ::ng-deep .number-marker {
+  background: none;
+  border: none;
+  
+  .marker-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 12px;
+    border: 2px solid white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    line-height: 1;
+    // Background color will be set inline based on variation
+  }
+}
