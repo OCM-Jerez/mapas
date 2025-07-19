@@ -167,7 +167,7 @@ export class MapVariationComponent implements AfterViewInit {
     
     // Create map
     const mapVariation = map('map-variation', {
-      center: [36.684881, -6.132903],
+      center: [36.684881, -6.136253],
       zoomControl: false,
       zoom: 16,
       maxZoom: 17,
