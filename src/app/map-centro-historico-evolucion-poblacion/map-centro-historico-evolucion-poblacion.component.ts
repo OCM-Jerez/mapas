@@ -10,12 +10,12 @@ import { distritoCentro } from '../../assets/data/distritos/distritoCentro';
 import type { PerimetroData } from '@interfaces/map.interface';
 
 @Component({
-  selector: 'app-map-variation',
-  templateUrl: './map-variation.component.html',
-  styleUrls: ['./map-variation.component.scss'],
+  selector: 'map-centro-historico-evolucion-poblacion',
+  templateUrl: './map-centro-historico-evolucion-poblacion.component.html',
+  styleUrls: ['./map-centro-historico-evolucion-poblacion.component.scss'],
   imports: [PerimetroInfoComponent]
 })
-export class MapVariationComponent implements AfterViewInit, OnDestroy {
+export class MapCentroHistoricoEvolucionPoblacionComponent implements AfterViewInit, OnDestroy {
   private readonly mapDataService = inject(MapDataService);
   private readonly mapStateService = inject(MapStateService);
   
@@ -383,7 +383,7 @@ export class MapVariationComponent implements AfterViewInit, OnDestroy {
     this.buildVariationMap();
     
     // Create map
-    const mapVariation = map('map-variation', {
+    const mapVariation = map('map-centro-historico-evolucion-poblacion', {
       center: [36.684881, -6.136253],
       zoomControl: false,
       zoom: 16,

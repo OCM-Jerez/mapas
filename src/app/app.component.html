@@ -32,11 +32,11 @@
 
   <!-- Mostrar el mapa correspondiente usando sintaxis moderna -->
   @if (mapState.isPopulationMap()) {
-    <app-map></app-map>
+    <map-secciones-censales-evolucion-poblacion></map-secciones-censales-evolucion-poblacion>
   } @else if (mapState.isVariationMap()) {
-    <app-map-variation></app-map-variation>
+    <map-centro-historico-evolucion-poblacion></map-centro-historico-evolucion-poblacion>
   } @else if (mapState.isBasicMap()) {
-    <app-map-basic></app-map-basic>
+    <map-secciones-censales></map-secciones-censales>
   } @else if (mapState.isDistritosMap()) {
     <app-map-distritos></app-map-distritos>
   }

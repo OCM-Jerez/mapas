@@ -4,12 +4,12 @@ import { GeoJsonObject, Feature, Geometry } from 'geojson';
 import seccionesCensalesGeometry from '../../assets/data/secciones-censales-geometry.json';
 
 @Component({
-  selector: 'app-map-basic',
-  templateUrl: './map-basic.component.html',
-  styleUrls: ['./map-basic.component.scss'],
+  selector: 'map-secciones-censales',
+  templateUrl: './map-secciones-censales.component.html',
+  styleUrls: ['./map-secciones-censales.component.scss'],
   standalone: true
 })
-export class MapBasicComponent implements AfterViewInit {
+export class MapSeccionesCensalesComponent implements AfterViewInit {
   private readonly mapInstance = signal<Map | null>(null);
   private readonly geoJsonLayer = signal<Layer | null>(null);
   
@@ -68,7 +68,7 @@ export class MapBasicComponent implements AfterViewInit {
     console.log('Iniciando map-basic component');
     
     // Crear el mapa
-    const mapBasic = map('map-basic', {
+    const mapBasic = map('map-secciones-censales', {
       center: [36.684881, -6.132903],
       zoomControl: true,
       zoom: 15,

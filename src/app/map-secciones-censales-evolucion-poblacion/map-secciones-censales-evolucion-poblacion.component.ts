@@ -8,12 +8,12 @@ import { MapDataService } from '@services/map-data.service';
 import { MapStateService } from '@services/map-state.service';
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss'],
+  selector: 'map-secciones-censales-evolucion-poblacion',
+  templateUrl: './map-secciones-censales-evolucion-poblacion.component.html',
+  styleUrls: ['./map-secciones-censales-evolucion-poblacion.component.scss'],
   imports: [CommonModule]
 })
-export class MapComponent implements AfterViewInit, OnDestroy {
+export class MapSeccionesCensalesEvolucionPoblacionComponent implements AfterViewInit, OnDestroy {
   // Services injection
   private readonly mapDataService = inject(MapDataService);
   private readonly mapStateService = inject(MapStateService);
@@ -91,7 +91,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
 
   private initializeMap(): void {
     // Initialize Leaflet map
-    const mapInstance = L.map('map', {
+    const mapInstance = L.map('map-secciones-censales-evolucion-poblacion', {
       center: this.mapCenter,
       zoomControl: false,
       zoom: this.defaultZoom,
