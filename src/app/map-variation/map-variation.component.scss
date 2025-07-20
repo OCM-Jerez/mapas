@@ -110,7 +110,86 @@
   }
 }
 
-// Estilos para el tooltip del perímetro
+// Leaflet choropleth controls styling (based on Leaflet tutorial)
+:host ::ng-deep .info {
+  padding: 8px 10px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  min-width: 220px;
+  max-width: 300px;
+  
+  h4 {
+    margin: 0 0 8px;
+    color: #777;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 18px;
+  }
+  
+  b {
+    color: #333;
+    font-weight: 600;
+  }
+  
+  // Style the content lines
+  br + b {
+    margin-top: 4px;
+    display: inline-block;
+  }
+}
+
+:host ::ng-deep .legend {
+  line-height: 20px !important;
+  color: #555 !important;
+  background: white !important;
+  background: rgba(255,255,255,0.95) !important;
+  padding: 8px 10px !important;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5) !important;
+  border-radius: 8px !important;
+  border: 2px solid #333 !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  min-width: 140px !important;
+  z-index: 1000 !important;
+  position: relative !important;
+  
+  h4 {
+    margin: 0 0 10px !important;
+    color: #333 !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    line-height: 16px !important;
+    
+    small {
+      font-size: 11px !important;
+      color: #666 !important;
+      font-weight: normal !important;
+    }
+  }
+  
+  i {
+    width: 20px !important;
+    height: 16px !important;
+    float: left !important;
+    margin-right: 8px !important;
+    margin-top: 2px !important;
+    opacity: 1 !important;
+    border: 1px solid #333 !important;
+    border-radius: 3px !important;
+    display: block !important;
+  }
+  
+  // Individual legend items
+  div, span {
+    clear: both !important;
+    margin-bottom: 3px !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+  }
+}
 :host ::ng-deep .perimetro-tooltip {
   background-color: #ff0000 !important;
   color: white !important;
@@ -146,6 +225,7 @@
   margin-left: auto;
   margin-right: auto;
   z-index: 1;
+  position: relative; // Add relative positioning to contain the legend
 }
 
 .tooltipPositive {
@@ -169,7 +249,60 @@
   font-weight: bold !important;
 }
 
-// Responsive design
+// Native Angular legend
+.angular-legend {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 2px solid #333;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  font-family: Arial, Helvetica, sans-serif;
+  z-index: 1000;
+  min-width: 160px;
+  
+  h4 {
+    margin: 0 0 12px;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 16px;
+    
+    small {
+      font-size: 11px;
+      color: #666;
+      font-weight: normal;
+    }
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    
+    i {
+      width: 20px;
+      height: 16px;
+      margin-right: 8px;
+      border: 1px solid #333;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+    
+    span {
+      color: #333;
+    }
+  }
+  
+  &:last-child .legend-item {
+    margin-bottom: 0;
+  }
+}
 @media (max-width: 768px) {
   .map-container {
     height: 75vh;
@@ -190,6 +323,35 @@
   .perimetro-intramuros-toggle-button {
     padding: 10px 20px;
     font-size: 14px;
+  }
+  
+  // Mobile legend adjustments
+  .angular-legend {
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    min-width: auto;
+    padding: 8px 10px;
+    
+    h4 {
+      font-size: 13px;
+      margin-bottom: 8px;
+      
+      small {
+        font-size: 10px;
+      }
+    }
+    
+    .legend-item {
+      font-size: 11px;
+      margin-bottom: 3px;
+      
+      i {
+        width: 16px;
+        height: 14px;
+        margin-right: 6px;
+      }
+    }
   }
 }
 

@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, computed, inject, signal } from '@angular/core';
-import { geoJSON, map, marker, tileLayer, polygon, Layer, LeafletEvent, Map as LeafletMap, divIcon } from 'leaflet';
+import { AfterViewInit, Component, computed, inject, signal, OnDestroy } from '@angular/core';
+import { geoJSON, map, marker, tileLayer, polygon, Layer, LeafletEvent, Map as LeafletMap, divIcon, Control, DomUtil } from 'leaflet';
+import * as L from 'leaflet';
 import { GeoJsonObject, Feature, Geometry } from 'geojson';
 
 import { MapDataService } from '@services/map-data.service';
@@ -14,7 +15,7 @@ import type { PerimetroData } from '@interfaces/map.interface';
   styleUrls: ['./map-variation.component.scss'],
   imports: [PerimetroInfoComponent]
 })
-export class MapVariationComponent implements AfterViewInit {
+export class MapVariationComponent implements AfterViewInit, OnDestroy {
   private readonly mapDataService = inject(MapDataService);
   private readonly mapStateService = inject(MapStateService);
   
@@ -31,11 +32,37 @@ export class MapVariationComponent implements AfterViewInit {
   readonly showDistritoCentro = this._showDistritoCentro.asReadonly();
   readonly showPerimetroIntramuros = this._showPerimetroIntramuros.asReadonly();
   readonly perimetroData = this._perimetroData.asReadonly();
+
+  // Get legend data for template
+  getLegendData() {
+    return [
+      { label: '1000+', color: this.getVariationColor(1500) },
+      { label: '500–1000', color: this.getVariationColor(750) },
+      { label: '200–500', color: this.getVariationColor(350) },
+      { label: '100–200', color: this.getVariationColor(150) },
+      { label: '50–100', color: this.getVariationColor(75) },
+      { label: '20–50', color: this.getVariationColor(35) },
+      { label: '10–20', color: this.getVariationColor(15) },
+      { label: '0–10', color: this.getVariationColor(5) },
+      { label: '-10–0', color: this.getVariationColor(-5) },
+      { label: '-20 – -10', color: this.getVariationColor(-15) },
+      { label: '-50 – -20', color: this.getVariationColor(-35) },
+      { label: '-100 – -50', color: this.getVariationColor(-75) },
+      { label: '-200 – -100', color: this.getVariationColor(-150) },
+      { label: '< -200', color: this.getVariationColor(-250) },
+      { label: 'Sin datos', color: 'transparent', border: '1px dashed #ccc' }
+    ];
+  }
   
   // Map references
   private distritoPolygon: Layer | null = null;
   private perimetroIntramurosLayer: Layer | null = null;
   private mapVariation: LeafletMap | null = null;
+  private geoJsonLayer: Layer | null = null;
+  private infoControl: any = null;
+  
+  // Variation data cache
+  private variationMap = new Map<string, number>();
   
   // Configuration
   private readonly tileLayerConfig = {
@@ -48,34 +75,221 @@ export class MapVariationComponent implements AfterViewInit {
     id: 'mapbox.light',
   };
 
+  // Choropleth color scale function - Red to Green (low to high values)
+  private readonly getVariationColor = (variation: number): string => {
+    // Red tones for negative/low values, Green tones for positive/high values
+    return variation >= 1000 ? '#006400' :  // Dark green for very high positive variation (1000+)
+           variation >= 500  ? '#228B22' :  // Forest green (500-1000)
+           variation >= 200  ? '#32CD32' :  // Lime green (200-500)
+           variation >= 100  ? '#7CFC00' :  // Lawn green (100-200)
+           variation >= 50   ? '#9AFF9A' :  // Light green (50-100)
+           variation >= 20   ? '#FFFF99' :  // Light yellow (20-50)
+           variation >= 10   ? '#FFCC99' :  // Light orange (10-20)
+           variation >= 0    ? '#FFB366' :  // Light orange-red (0-10)
+           variation >= -10  ? '#FF9999' :  // Light red (-10 to 0)
+           variation >= -20  ? '#FF6666' :  // Red (-20 to -10)
+           variation >= -50  ? '#FF3333' :  // Bright red (-50 to -20)
+           variation >= -100 ? '#FF0000' :  // Pure red (-100 to -50)
+           variation >= -200 ? '#CC0000' :  // Dark red (-200 to -100)
+                              '#990000';   // Very dark red (less than -200)
+  };
+
+  // Style function for choropleth
+  private readonly choroplethStyle = (feature?: Feature<Geometry, any>) => {
+    if (!feature) {
+      return {
+        fillColor: 'transparent',
+        weight: 1,
+        opacity: 0.3,
+        color: '#ccc',
+        dashArray: '3',
+        fillOpacity: 0
+      };
+    }
+    
+    const sectionId = feature.properties?.ID;
+    const variation = sectionId ? this.variationMap.get(sectionId) : undefined;
+    
+    // If no variation data is available, make it transparent
+    if (variation === undefined) {
+      return {
+        fillColor: 'transparent',
+        weight: 1,
+        opacity: 0.3,
+        color: '#ccc',
+        dashArray: '3',
+        fillOpacity: 0
+      };
+    }
+    
+    return {
+      fillColor: this.getVariationColor(variation),
+      weight: 2,
+      opacity: 1,
+      color: 'white',
+      dashArray: '3',
+      fillOpacity: 0.5
+    };
+  };
+
   // Event handlers for map features
   private readonly onEachFeature = (feature: Feature<Geometry, any>, layer: Layer): void => {
     layer.on({
       mouseover: this.highlightFeature,
       mouseout: this.resetHighlight,
+      click: this.zoomToFeature
     });
   };
 
   private readonly highlightFeature = (e: LeafletEvent): void => {
     const layer = e.target;
-    layer.setStyle({
-      weight: 5,
-      color: '#666',
-      dashArray: '',
-      fillOpacity: 0.3,
-      fillColor: '#333'
-    });
+    const feature = layer.feature;
+    
+    // Get variation data to determine if section has data
+    const sectionId = feature?.properties?.ID;
+    const variation = sectionId ? this.variationMap.get(sectionId) : undefined;
+    
+    // Different highlight style for sections without data
+    if (variation === undefined) {
+      layer.setStyle({
+        weight: 3,
+        color: '#999',
+        dashArray: '',
+        fillOpacity: 0.2,
+        fillColor: '#f0f0f0'
+      });
+    } else {
+      layer.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.5
+      });
+    }
+    
+    layer.bringToFront();
+    
+    // Update info control
+    if (this.infoControl && feature?.properties) {
+      const sectionName = this.getSectionName(sectionId);
+      
+      if (variation === undefined) {
+        (this.infoControl as any).update({
+          name: sectionName || sectionId,
+          variation: 'Sin datos',
+          sectionId: sectionId
+        });
+      } else {
+        // Get detailed population data for this section
+        const variacionPoblacion = this.mapDataService.getVariacionPoblacion();
+        const poblacion2024Data = this.mapDataService.getPoblacion2024Data();
+        
+        // Find the complete data for this section
+        const variacionItem = variacionPoblacion.find(item => {
+          const codigoCompleto = item['Código sección'].toString();
+          if (codigoCompleto.length === 10) {
+            const ultimosCinco = codigoCompleto.substring(5);
+            const distrito = ultimosCinco.substring(0, 2);
+            const seccion = ultimosCinco.substring(2, 5);
+            const id = `${distrito}-${seccion}`;
+            return id === sectionId;
+          }
+          return false;
+        });
+        
+        const poblacion2024Item = poblacion2024Data.find(item => 
+          item['Código sección'] === variacionItem?.['Código sección']
+        );
+        
+        const poblacion2011 = variacionItem?.['Población 2011'];
+        const poblacion2024 = poblacion2024Item?.['Población 2024'];
+        const porcentaje = poblacion2011 && poblacion2024 ? ((poblacion2024 - poblacion2011) / poblacion2011) * 100 : undefined;
+        
+        (this.infoControl as any).update({
+          name: sectionName || sectionId,
+          variation: variation,
+          sectionId: sectionId,
+          poblacion2011: poblacion2011,
+          poblacion2024: poblacion2024,
+          porcentaje: porcentaje
+        });
+      }
+    }
   };
 
   private readonly resetHighlight = (e: LeafletEvent): void => {
-    const layer = e.target;
-    layer.setStyle({
-      weight: 2,
-      color: '#3388ff',
-      dashArray: '',
-      fillOpacity: 0,
-    });
+    if (this.geoJsonLayer) {
+      (this.geoJsonLayer as any).resetStyle(e.target);
+    }
+    
+    // Reset info control
+    if (this.infoControl) {
+      (this.infoControl as any).update();
+    }
   };
+
+  private readonly zoomToFeature = (e: LeafletEvent): void => {
+    if (this.mapVariation) {
+      this.mapVariation.fitBounds(e.target.getBounds());
+    }
+  };
+
+  // Helper method to get section name from variation data
+  private getSectionName(sectionId: string): string | undefined {
+    const variacionPoblacion = this.mapDataService.getVariacionPoblacion();
+    const sectionData = variacionPoblacion.find(item => {
+      const codigoCompleto = item['Código sección'].toString();
+      if (codigoCompleto.length === 10) {
+        const ultimosCinco = codigoCompleto.substring(5);
+        const distrito = ultimosCinco.substring(0, 2);
+        const seccion = ultimosCinco.substring(2, 5);
+        const id = `${distrito}-${seccion}`;
+        return id === sectionId;
+      }
+      return false;
+    });
+    
+    return sectionData?.['Nombre'];
+  }
+
+  // Create custom info control - simplified approach  
+  private createInfoControl(): any {
+    const InfoControl = (L as any).Control.extend({
+      options: {
+        position: 'topright'
+      },
+      
+      onAdd: function(map: any) {
+        this._div = DomUtil.create('div', 'info');
+        this.update();
+        return this._div;
+      },
+      
+      update: function(props?: { 
+        name: string, 
+        variation: number | string, 
+        sectionId: string,
+        poblacion2011?: number,
+        poblacion2024?: number,
+        porcentaje?: number
+      }) {
+        this._div.innerHTML = '<h4>Variación Poblacional (2011-2024)</h4>' + 
+          (props ?
+            '<b>' + props.name + '</b><br/>' +
+            (props.variation === 'Sin datos' ? 
+              '<b>Estado:</b> Sin datos disponibles' :
+              '<br/><b>Población 2011:</b> ' + (props.poblacion2011 ? props.poblacion2011.toLocaleString('es-ES') : 'N/A') + '<br/>' +
+              '<b>Población 2024:</b> ' + (props.poblacion2024 ? props.poblacion2024.toLocaleString('es-ES') : 'N/A') + '<br/>' +
+              '<br/><b>Variación (2011-2024):</b> ' + (typeof props.variation === 'number' && props.variation > 0 ? '+' : '') + 
+              (typeof props.variation === 'number' ? props.variation.toLocaleString('es-ES') : props.variation) + '<br/>' +
+              '<b>Porcentaje:</b> ' + (props.porcentaje !== undefined ? 
+                (props.porcentaje > 0 ? '+' : '') + props.porcentaje.toFixed(2) + '%' : 'N/A'))
+            : 'Pasa el cursor sobre una sección');
+      }
+    });
+    
+    return new InfoControl();
+  }
 
   toggleMap(): void {
     this._showMap.update(show => !show);
@@ -163,7 +377,10 @@ export class MapVariationComponent implements AfterViewInit {
     const perimetroRealData = this.mapDataService.getPerimetroRealData();
     const perimetroIntramurosData = this.mapDataService.getPerimetroIntramurosData();
     
-    console.log('Iniciando map-variation component optimizado');
+    console.log('Iniciando map-variation component con choropleth');
+    
+    // Build variation map for choropleth colors
+    this.buildVariationMap();
     
     // Create map
     const mapVariation = map('map-variation', {
@@ -181,20 +398,72 @@ export class MapVariationComponent implements AfterViewInit {
       this.tileLayerConfig
     ).addTo(mapVariation);
 
-    // Add census sections to map
-    const geoJson = geoJSON(secionesCensales as GeoJsonObject, {
-      onEachFeature: this.onEachFeature,
-      style: {
-        weight: 2,
-        color: '#3388ff',
-        dashArray: '',
-        fillOpacity: 0,
-      }
+    // Add census sections to map with choropleth styling
+    this.geoJsonLayer = geoJSON(secionesCensales as GeoJsonObject, {
+      style: this.choroplethStyle,
+      onEachFeature: this.onEachFeature
     }).addTo(mapVariation);
+
+    // Create and add info control
+    this.infoControl = this.createInfoControl();
+    if (this.infoControl) {
+      this.infoControl.addTo(mapVariation);
+      console.log('✅ Info control añadido');
+    }
 
     this.addDistritoPolygon(mapVariation);
     this.addPerimetroLayers(mapVariation, perimetroRealData, perimetroIntramurosData);
+    // Note: We keep markers for additional detailed information
     this.addVariationMarkers(mapVariation, secionesCensales);
+  }
+
+  // Build variation map for quick lookup
+  private buildVariationMap(): void {
+    const variacionPoblacion = this.mapDataService.getVariacionPoblacion();
+    const poblacion2024Data = this.mapDataService.getPoblacion2024Data();
+    
+    let sectionsWithData = 0;
+    let sectionsWithoutData = 0;
+    
+    variacionPoblacion.forEach(variacionItem => {
+      // Find corresponding 2024 population data
+      const poblacion2024Item = poblacion2024Data.find(item => 
+        item['Código sección'] === variacionItem['Código sección']
+      );
+      
+      if (poblacion2024Item) {
+        // Extract section ID
+        const codigoCompleto = variacionItem['Código sección'].toString();
+        if (codigoCompleto.length === 10) {
+          const ultimosCinco = codigoCompleto.substring(5);
+          const distrito = ultimosCinco.substring(0, 2);
+          const seccion = ultimosCinco.substring(2, 5);
+          const seccionId = `${distrito}-${seccion}`;
+          
+          const poblacion2011 = variacionItem['Población 2011'];
+          const poblacion2024 = poblacion2024Item['Población 2024'];
+          const variacion = poblacion2024 - poblacion2011;
+          
+          this.variationMap.set(seccionId, variacion);
+          sectionsWithData++;
+        }
+      } else {
+        sectionsWithoutData++;
+      }
+    });
+    
+    console.log(`✅ Mapa de variación construido:`);
+    console.log(`   - ${sectionsWithData} secciones con datos`);
+    console.log(`   - ${sectionsWithoutData} secciones sin datos (aparecerán transparentes)`);
+  }
+
+  ngOnDestroy(): void {
+    // Clean up controls when component is destroyed
+    if (this.mapVariation) {
+      if (this.infoControl) {
+        this.mapVariation.removeControl(this.infoControl);
+      }
+    }
   }
 
   private addDistritoPolygon(mapVariation: LeafletMap): void {

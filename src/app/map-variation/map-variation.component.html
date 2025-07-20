@@ -32,7 +32,19 @@
   </div>
 
   @if (showMap()) {
-    <div class="map-container" id="map-variation"></div>
+    <div class="map-container" id="map-variation">
+      <!-- Native Angular Legend - Always visible inside map -->
+      <div class="angular-legend">
+        <h4>Variación Poblacional<br><small>(2011-2024)</small></h4>
+        @for (item of getLegendData(); track item.label) {
+          <div class="legend-item">
+            <i [style.background]="item.color" 
+               [style.border]="item.border || '1px solid #333'"></i>
+            <span>{{ item.label }}</span>
+          </div>
+        }
+      </div>
+    </div>
   }
   
   <!-- Componente modal para mostrar información del perímetro -->
